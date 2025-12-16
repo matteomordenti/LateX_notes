@@ -16,6 +16,32 @@
 
 \maketitle
 
-\section{Introduction}
+\section{Macchine astratte}
+pag 28 :Ml molto complesso  da tradurre in una macchina fisica ad alto livello, quindi vengono costruite macchine fisiche solo per linguaggi di basso livello
 
+altimenti crei u programma che trduce L e i suoi costrutti in L’, un linguaggio gia esistente implementabile su una macchina gia esistente; minore velocita rispetto al casoo precedente
+
+altrimenti anziche programmi usi microprogrammi o firmware che traducono L in un liguaggio di basso livello e usano registri di sola lettura, garantendo buone prestazioni
+
+pag 31 impl. inter. pura : non e vvera traduzione, I fa corrispondere a una certa parte di L una certa parte di Lo, poco efficente, I deve decodificare al momento. piu flessibile perche permette di  interagire direttamnete con l’esecuzione del programma e gli interpreti sono piu veloci da creare
+
+impl. comp. pura: vera traduzione dal compilatore che avviene prima dell’esecuzione del programma. alcune informazioni del programma sorgente vanno perse che rende piu difficile interagire con il programma in tempo reale
+
+vantaggi e svantaggi interpretazione:
+\begin{itemize}
+
+\item vantaggio: maggiore flessibilita, permette di interagire con l'interazione del programma.
+\item vantaggio : piu veloce da realizzare
+\item vantaggio : occupa meno memorio, non generando nuovo codice, problema meno sentito oggi.
+\item svantaggio : la compilazione intterpretativa e meno efficente perche deve effettuare al momento dell'esecuzione un'interpretazione dei costrutti di L.
+con diverse occorrenze dello stesso costrutto si richiedono ulteriori decodifiche ogni volta
+\end{itemize}
+vantaggi e svantaggi compilazione:
+\begin{itemize}
+\item vantaggio: il compilatore deve compilare una sola volta al''inizio poi i costrutti non devono essere decodificati ogni  volta
+\item vantaggio: maggiore efficenza
+\item savntaggio: perdita del codice sorgente.
+se ci fosse un problema sarebbe difficile capire da dove si origiina l'errore
+\end{itemize}
+siamo a pag 35
 \end{document}
