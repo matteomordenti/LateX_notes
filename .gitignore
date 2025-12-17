@@ -1,17 +1,10 @@
-# LaTeX intermediate files
+# LaTeX build files
+build/
+
+# LaTeX temporary files (safety net)
 *.aux
 *.log
 *.out
-*.toc
-*.lof
-*.lot
 *.fls
 *.fdb_latexmk
 *.synctex.gz
-*.bbl
-*.blg
-
-# Build/output folders
-pdf/
-build/
-output/

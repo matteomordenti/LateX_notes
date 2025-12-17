@@ -15,7 +15,44 @@
 
 
 \maketitle
+\section{intro}
+\section{semantic web}
+semantic web:scrtuttura comune che consente di condividere e riutilizzare dati tra applicazioni, aziende e comunita
+ciattion link: permette di creare collegamenti
+semantic web stack: illustra l'architettura del web semantico
+divverese classi sono oragnizzate in modo tassonomico attraverso un modello chiamato RDF.
 
-\section{Introduction}
+RDF(resource description framework):serve a fare affermazioni(statement) sulle risorse nella forma di triple(soggetto-predicato-oggetto)
+
+un garfo RDF e un insieme di triple RDFle risorse sono rappresentate come nodi.
+
+il modello a triple e semplice e minimalista. il modello RDF inoltre e modulare:
+\begin{itemize}
+    \item la gesione delle informazioni puo essere parallelizzata
+    \item informazioni parziali sono comunque valide
+    \end{itemize}
+
+    svantaggi:
+    \begin{itemize}
+        \item il modello di dati RDF e costituito da elementi di dati piccoli e frammentati, quindi un database di medie dimensioni risulta in miliardi di triple
+        \item limitazione delle relazioni n-arie, non ci sono modi semplici di descriverli
+        \item limitata possibilita di attribuire informazioni alle triple stesse
+    \end{itemize}
+
+    reificazione: prendo una tripla e gli do un identificativo per farla diventare parte di un alòtra tripla
+
+
+    microformati: sono ad esempio embedding di triple RDF all'interno di ambienti ospiti
+
+    importante l'aspetto della serializzazione.
+    manca il reasoning  e la generazione di nuove informazioni
+
+    con RDF si possono introdurre le inferenze attraverso altre cllassi eproprieta
+
+    il modello tabellare e il migliore che abbiamo nel complesso, ma e inefficente per le relazioni M-N
+    il modello ad albero ha senso per le relazioni di tipo 1-N meno mer M-N
+
+    
+
 
 \end{document}
