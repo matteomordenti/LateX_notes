@@ -1,0 +1,17 @@
+{
+  "latex-workshop.latex.tools": [
+    {
+      "name": "Build Notes",
+      "command": "/home/matteo/scripts/bin/build_notes.sh",
+      "args": []
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "Build all notes",
+      "tools": ["Build Notes"]
+    }
+  ],
+  "latex-workshop.latex.recipe.default": "Build all notes"
+}
+
