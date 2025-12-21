@@ -129,7 +129,33 @@ grammatica libera da conteso composta sa 4 parti:
     \item produzioni: le regole di riscrittura che permettono di sostituire un simbolo non terminale con una sequenza di simboli terminali e non terminali
     \item simbolo iniziale da cui parte tuttoù
     \end{itemize}
-    
+   \textbf{derivazione}: sequenza di applicazioni delle produzioni che partendo dal simbolo iniziale porta a una stringa composta solo da simboli terminali
+\subsubsection{alberi di derivazione}
+   per i linguaggi di programmazione e importante conoscere gli \textbf{alberi radicati ordinati}:Un albero radicato e ordinato è una struttura finita con una radice e una sequenza ordinata di sottoalberi, ognuno dei quali è a sua volta un albero. La radice e il simbolo iniziale s, e ogni nodo e un simbolo(terminale o non).ogni nodo ha un solo padre.
+
+   
+\subsubsection{ambiguita}
+Se vogliamo usare gli alberi di derivazione per descrivere
+la struttura logica di una stringa siamo in una pessima situazione: la grammatica
+dell'Esempio 2.3 non è in grado di assegnare 11na struttura 11nivoca alla stringa in
+questione. A seconda di come è costruita la derivazione, la precedenza tra i due
+operatori aritmetici varia.
+
+\textbf{definizione}:Una grammatica G è ambigua se esiste almeno
+una stringa di C[GJ che ammette più di un albero di derivazione.
+
+ambiguita nasce dal fatto che almeno una stringa abbia piu alberi di derivazione ma non dal fatto che la stessa stringa abbia piu derivazioni.
+
+una grammatica ambigua non puo essere usata per compilare(non sarebbe possibile una traduzione univoca), am e posiibile modificarla.
+
+lo sforzo di creare una grammatica non ambigua puo portare a piu complessita e contorcimenti.
+
+\subsection{vincoli sintattici contestuali}
+
+
+
+
+
 
 
 
