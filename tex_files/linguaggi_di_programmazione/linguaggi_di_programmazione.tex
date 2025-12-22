@@ -151,12 +151,38 @@ una grammatica ambigua non puo essere usata per compilare(non sarebbe possibile 
 lo sforzo di creare una grammatica non ambigua puo portare a piu complessita e contorcimenti.
 
 \subsection{vincoli sintattici contestuali}
+alcune volte anche i linguaggi di programazione dipendono dal contesto.
+ad esempio in c la variabile deve essere dichiarata prima di essere usata.
+questi sono detti \underline{vincoli sintattici} 
+e sono impossibili da descrivere in una grammatica libera da conttesto.
+farlo e invece compito dei linguaggi formali, ed esistono grammatiche dette grammatiche contsetuali.
 
+tuttavia queste sono molto complesse ed e comunque impossibile stabilire metodi di traduzione per questo il contesto e ignorato dalle grammatiche e espresso al megliob tramite linguaggio naturale.
+ediante strumenti formali quali i sistemi di transizione, che vedremo nel
+Paragrafo 2.5, dedicato alla semantica.
 
+nel gergo dei linguaggi di programmazione ci si
+riferisce ad essi come a \textbf{vincoli di semantica statica}
 
+Nel gergo, "sintassi" significa in genere "descrivibile con una grammatica libera", "semantica statica" significa "descrivibile con vincoli contestuali verificabili staticamente sul testo del
+programma", mentre ''semantica dinamica'' (o "semantica" tout court) si riferisce
+a quanto attiene a come e quando il programma sarà eseguito.
 
+La distinzione tra sintassi non contestuale e sintassi contestuale (cioè seman-
+tica statica) è stabilita precisamente dalla potenza espressiva delle grammatiche
+libere.
 
+\subsubsection{sintassi astratta e concreta}
+La grammatica di un linguaggio di programmazione definisce un linguaggio come
+insieme di stringhe
 
+non tutti gli alberi di derivazione corrispondono a programmi legali.
+
+l'analisi di semantica statica ha il compito di selezionarne alcuni, quelli
+che soddisfano 1 vincoli contestuali del linguaggio stesso. L'insieme degli alberi
+che risultano da questo processo costituisce la \underline{sintassi astratta di un linguaggio}.
+
+\subsection{compilatori}
 
 
 
