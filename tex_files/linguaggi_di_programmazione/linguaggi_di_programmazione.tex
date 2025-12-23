@@ -183,6 +183,97 @@ che soddisfano 1 vincoli contestuali del linguaggio stesso. L'insieme degli albe
 che risultano da questo processo costituisce la \underline{sintassi astratta di un linguaggio}.
 
 \subsection{compilatori}
+la struttura logica del compilatore e un modello a cascata, in cui il proggramma sorgente viene tradotto iin varie rappresentazioni intermedie
+fino ad arrivare al linguaggio oggetto
+
+ci sono varie fasi
+\begin{enumerate}
+    \item analisi lessicale: il testo del programma sorgente viene suddiviso in token, insiemi di caratteri.(parole chiave, identificatori, operatori, ecc) (equivalente delle parole.)
+    \item analisi sintattica: i token vengono raggruppati in frasi secondo la grammatica del linguaggio dall'analizzatore sintattico(o parser).
+    \item analisi semantica: le frasi vengono verificate rispetto ai vincoli di semantica statica. viene costruita la tabella dei simboli.
+    \item generazione del codice intermedio: viene prodotto un codice intermedio che rappresenta la struttura logica del programma, ci sono ancora ottimizzazioni da fare percio non e opportuna generare il codice oggetto
+    \item ottimizzazione del codice intermedio: il codice intermedio viene migliorato per efficienza
+    \item generazione del codice oggetto: il codice intermedio ottimizzato viene tradotto nel linguaggio macchina della piattaforma di destinazione
+\end{enumerate}
+
+\subsection{semantica}
+la semantica di un linguaggio di programmazione e il significato delle sue frasi e la sua descrizione e piuttosto complessa.
+Dovrebbe essere una descrizione sia precisa che flessibile che non ambigua.
+
+esistono metodi formali per la descrizione semantica adatti ma ulcuni fenomeni semantici rendono la decrizione formale molto complessa.
+percio per lo piu e usato il linguaggio naturale.
+
+Ciò non toglie che metodi formali per la
+semantica siano molto utilizzati nelle fasi preparatorie del progetto di un linguag-
+gio, oppure per descriverne alcune caratteristiche particolari, dove la necessità di
+evitare ambiguità è predominante rispetto alla semplicità.
+esistono due grandi famiglie di metodi formali per la descrizione della semantica:
+\begin{itemize}
+    \item La semantica denotazionale è l' ap-
+plicazione ai linguaggi di programmazione di tecniche sviluppate per la semantica
+del linguaggio logico-matematico. Il significato di un programma è dato da una
+funzione, che esprime il componamento input/output del programma stesso.
+\item ell'approccio operazionale, invece, non vi sono entità esterne (per esempio
+funzioni) da associare ai costrutti di un linguaggio. Usando tecniche opportune,
+una semantica operazionale specifica il comportamento della macchina astratta,
+ossia ne definisce formalmente l'interprete, facendo riferimento ad un formali-
+smo (astratto) di più basso livello. ci possono essere tecniche che usano automi formali e altre che usano sistemi di regole logico-matematiche.
+
+\end{itemize}
+
+\subsection{pragmatica}
+serve a capire a cosa serve una frase in un certo contesto.
+si parla anche di stile di programmazione e metodi di progettazione del software
+
+non ci interessa troppo in questo corso
+
+\subsection{implementazione}
+implementare un linguaggio vuol dire scriverne un compilatore
+e realizzare una macchina astratta per il linguaggio oggetto del compilatore, op-
+pure scriverne un interprete e realizzare la macchina astratta del linguaggio nel
+quale l'interprete stesso è scritto oppure, come avviene nella pratica, un mix di
+entrambe queste cose.
+
+ancora una volta non ci interessa
+
+\section{analisi lessicale dei linguaggi regoalari}
+
+\subsection{intro}
+
+los copo dell'analisi lessicale e riconoscere dnella stringa di ingresso gruppi di caratteri che corrispondono a certe caratteristiche sintattiche.
+cosi la stringa di ingressso e trasformata in una sequenza di token.
+
+Non c'è un motivo teorico per separare l'analisi sintattica da quella lessicale:
+tutta 1'elaborazione del testo sorgente potrebbe essere condotta mediante le tecniche
+ di analisi sintattica che tratteremo nel Capitolo 4. Tuttavia la separazione tra i
+due tipi di analisi è molto utile perché le tecnologie per effettuare l'analisi lessicale sono più efficienti di quelle (più generali) usate per l'analisi sintattica.
+
+\subsection{token}
+un token e una coppia:
+\begin{itemize}
+\item il nome del token(il simbolo del token).
+\item   il valore del token(la stringa di caratteri che lo rappresenta)
+\end{itemize}
+
+poi per ogni nome di token si definiscono quali sequenze di caratteri sono riconosciute come istanze(valori di quel token)
+
+Le sequenze
+di caratteri associate ad un token sono specificate mediante un pattern, cioè una
+descrizione generale della forma che le sequenze di caratteri possono assumere.
+Questa descrizione generale è data mediante espressioni regolari, un concetto che
+introdurremo tra breve.
+
+con tutto ci viene fatto una lista di token che viene passata al parser.
+
+una stringa dell'alfabeto di ingresso che corrisponde ad un pattern si dice \textbf{lessema}
+.ad un token possono corrispondere anche piu lessemi.
+
+\subsection{espressioni regolari}
+
+
+
+
+
 
 
 
