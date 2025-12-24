@@ -270,6 +270,57 @@ una stringa dell'alfabeto di ingresso che corrisponde ad un pattern si dice \tex
 
 \subsection{espressioni regolari}
 
+\subsubsection{alcune definizioni}:
+\begin{itemize}
+\item \textbf{alfabeto}: insieme finito di simboli
+\item \textbf{stringa su A}: sequenza finita di simboli di un alfabeto A
+\item \textbf{lunghezza di una stringa}: numero di simboli che la compongono
+\item \textbf{concatenazione}: operazione che consiste nel mettere due stringhe in sequenza
+\item \textbf{linguaggio sulla'alfabeto A}: insieme di stringhe su A
+\end{itemize}
+
+date due stringhe s e t su A, la loro concatenazione e indicata con st
+
+ora possiamo definire alcune \underline{operazioni tra linguaggi sullo stesso alfabeto}
+\begin{itemize}
+\item \textbf{concatenazione}: dato un limguaggio L e un linguaggio M, la loro concatenazione si dice LM o L·M ed e l'insieme di tutte le stringhe ottenute concatenando una stringa di L con una stringa di M. se uno dei due e un singoletto(insieme di 1 elemento),l'elemento puo rappresentare l'insieme.
+\item \textbf{unione}: dato un linguaggio L e un linguaggio M, la loro unione si dice L U M ed e l'insieme di tutte le stringhe che appartengono a L o a M.
+\item \textbf{chiusura di Kleene}: dato un linguaggio L, \underline{la sua chiusura di Kleene si dice L*} ed e l'insieme di tutte le stringhe ottenute concatenando un numero qualsiasi di stringhe di L, compresa la stringa vuota. in pratica e l'unione di $L^0,L^1,L^2$ ecc..
+\item \textbf{chiusura positiva di Kleene}: dato un linguaggio L, la sua chiusura positiva di Kleene si dice L+ ed e l'insieme di tutte le stringhe ottenute concatenando una o piu stringhe di L. in pratica e l'unione di $L^1,L^2$
+\end{itemize}
+
+\subsubsection{espressioni regolari}
+
+Un’\textbf{espressione regolare} descrive un insieme di stringhe.
+Questo insieme è un linguaggio ben definito e contiene tutti i possibili lessemi
+che corrispondono a un certo token.
+
+i token sono classi di lessemi(identifier,number ecc...) i lessemi sono i simboli concreti.
+
+dato un linguaggio L e un'espressioone regolare R, esiste un solo linguaggioL(R), cioe un solo insieme di tutte le stringhe che R descrive.
+
+quindi in pratica un'espressione regolare e l'insieme di tutti i lessemi che corrispondono a un certo token(ad esempio se il token e identificatore x,y ecc... appartengono all'esspressione regolare)
+
+tra due espressioni regolari sullo stesso linguaggio ci sono diverse proprieta: es commutativa, associativa ecc..
+
+\subsubsection{definizioni regolari}
+Per scrivere espressioni complesse è utile poterle suddividere in sottoespressioni, ognuna definita separatamente con un nome associato.
+Fissato un alfabeto A, una definizione regolare su A è costituita da una lista di
+definizioni
+
+d1 := s1
+
+d2 := s2
+
+...
+
+dn := sn
+
+nella quale tutti 1 dn sono simboli nuovi, distinti tra loro e non appartenenti ad A,
+mentre ogni sn è un'espressione regolare sull'alfabeto A U { d1  ...., di- 1}.
+
+\subsection{automi finiti}
+
 
 
 
