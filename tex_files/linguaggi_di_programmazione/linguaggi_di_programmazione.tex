@@ -321,9 +321,26 @@ mentre ogni sn è un'espressione regolare sull'alfabeto A U { d1  ...., di- 1}.
 
 \subsection{automi finiti}
 
+le espressioni regolari specificano la forma deilessemi associati ad un token, ma rimane il problema di identificarli prima e associarli.
 
+un \textbf{automa finito}: è un algoritmo con un pool di stati, che prende in input un lessema, consuma uno alla volta i caratteri del lessema e cambia stato in base al carattere letto e allo stato corrente.
+dopo aver consumato l'ultimo carattare, se l'automa si trova in uno stato di accettazione(tali stati sono detti stati finali), il lessema e riconosciuto come appartenente al token associato all'automa. altrimenti se non si trova in uno stato di accettazione o si e fermato prima rifiuta l'input.
 
+\subsubsection{automi finiti non deterministici}
 
+in certi casi puo essere utile avere piu scelte su quale stato andare in base al carattere letto e allo stato corrente.
+in questo caso si parla di \textbf{automa finito non deterministico}: ogni coppia (stato corrente,carattere letto) puo portare a piu stati successivi.
+in questo caso l'automa accetta il lessema se esiste almeno un percorso che porta a uno stato di accettazione.
+
+\textbf{definizione formale}: un automa finito non deterministico è una quintupla(S,Q,d,q0,F) dove 
+
+\begin{itemize}
+\item S è l'alfabeto degli input
+\item Q è l'insieme finito degli stati
+\item d è la funzione di transizione che associa ad ogni coppia (stato corrente, carattere letto) un insieme di stati successivi.
+\item q0 è lo stato iniziale
+\item F è l'insieme degli stati finali
+\end{itemize}
 
 
 
