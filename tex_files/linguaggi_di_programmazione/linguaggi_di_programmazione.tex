@@ -342,6 +342,35 @@ in questo caso l'automa accetta il lessema se esiste almeno un percorso che port
 \item F è l'insieme degli stati finali
 \end{itemize}
 
+\subsubsection{automi finiti deterministici}
+un DFA(definite finite automata) e un automa finito non deterministico in cui ogni coppia (stato corrente,carattere letto) porta a un solo stato successivo.
+\begin{itemize}
+\item una sola computazione possibile
+\item piu semplice da implementare
+\item nessuna ambiguita
+\item efficente
+\end{itemize}
+
+a partire da qulasiasi NFA(non deterministic finite automata) e possibile costruire un DFA equivalente che accetta lo stesso linguaggio e viceversa.
+
+in un NFA ci sono 2 cause di non determinismo:
+\begin{itemize}
+\item   piu stati successivi per la stessa coppia (stato corrente,carattere letto)
+\item transizioni epsilon, che permettono di cambiare stato senza leggere alcun carattere
+\end{itemize}       
+
+di solito e buona norma trasformare gli NFA in DFA per semplificare l'implementazione.
+
+cio si fa attraverso la \textbf{costruzione per sottoinsiemi}: cioe ogni stato del DFA corrisponde a un sottoinsieme di stati dell'NFA. Uno stato dell'DFA e finale se contiene almeno uno stato finale dell'NFA.
+
+\subsection{da espressioni regolari ad automi finiti}
+
+
+
+
+
+
+
 
 
 
