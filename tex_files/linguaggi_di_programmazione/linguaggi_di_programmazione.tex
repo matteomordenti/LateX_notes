@@ -365,6 +365,40 @@ cio si fa attraverso la \textbf{costruzione per sottoinsiemi}: cioe ogni stato d
 
 \subsection{da espressioni regolari ad automi finiti}
 
+ora ci serve un metodo sistematico per costruire un'NFA che riconosce los stesso linguaggio a partire da un'espressione regolare.
+
+data un'espressione regolare s possiamo costruire un'NFA N[s] tale che N[s]= L(N[s])
+
+durante la costruzione devono essere mantenute 2 proprieta:
+\begin{itemize}
+    \item lo stato iniziale non ha archi entranti
+    \item lo stato finale non ha archi uscenti
+\end{itemize}
+
+in pratica si costruisce l'NFA e da cio si ricava il DFA
+
+riassumendo:
+
+\underline{Ogni espressione regolare definisce un linguaggio regolare; per essa è possibile}
+
+\underline{costruire un NFA equivalente e, tramite la costruzione per sottoinsiemi, un DFA che riconosce}
+
+\underline{lo stesso linguaggio.}
+
+\subsection{automi finiti e grammatiche}
+
+i linguaggi si poterbbero anche descrivere anche attraverso grammatiche libere da contesto, ma queste di loro sarebbero troppo potenti perche abbia senso
+
+si puo rendere fattibile limitando la forma delle produzioni
+
+ora dimostreremo che ogni DFA corrisponde a una certa grammatica libere da contesto
+per poi dimostrare che ogni grammatica regolare definisce un linguaggio
+corrispondente ad un'espressione regolare.
+vedi  pag 65(82)
+
+\subsection{minimizzare un DFA}
+
+
 
 
 
