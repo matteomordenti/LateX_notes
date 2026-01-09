@@ -17,32 +17,37 @@
 \maketitle
 
 \section{processi}
-Def processo: un attivita controllata da un programma che si svolge su un processore
+Def processo: un attivita controllata da un programma che si svolge su un processore.
 
-programma e un entita statica, un processo e dinamico
+programma e un entita statica, un processo e dinamico.
 
-il processo e l’attualizzazione del programma
+il processo e l’attualizzazione del programma.
 
-assioma del “finite process”:ogni processo viene eseguito a una velocita finita, costante ma sconosciuta
+assioma del “finite process”:ogni processo viene eseguito a una velocita finita, costante ma sconosciuta.
 
 Ad ogni istante, un processo può essere totalmente
 descritto dalle seguenti componenti:
+\begin{itemize}
+\item La sua immagine di memoria, divisa in:
 
-La sua immagine di memoria:
-
-la memoria assegnata al processo
+    \begin{enumerate}
+       
+\item la memoria assegnata al processo
 (ad es. testo, dati, stack)
-le strutture dati del S.O. associate al processo
+
+\item le strutture dati del S.O. associate al processo
 (ad es. file aperti)
-La sua immagine nel processore
+    \end{enumerate}
 
-la sua immagine nel processore:
+\item la sua immagine nel processore:
 contenuto dei registri generali e speciali
-Lo stato di avanzamento
 
-il suo avanzamento del processo:
+
+
+\item il suo avanzamento del processo:
 descrive lo stato corrente del processo: ad esempio, se è in
 esecuzione o in attesa di qualche evento
+\end{itemize}
 
 piu processi possono eseguire lo stesso programma
 stato dei processi:
@@ -75,14 +80,14 @@ interleaving: per ogni processore al massimo un processo alla volta e attivo, mu
 
 overlapping: piu proceessi sono esguiti contemporeanamente su piu processori, sono alteranti nello spazio
 
-multiprogramming e multiprogramming condividono gli stessi errori derivanti dal fatto che non e possibile predirre gli istanti temporali in cui avvengono le operaziooni e i processi accedono a risorse condivise
+multiprogramming e multiprocessing condividono gli stessi errori derivanti dal fatto che non e possibile predirre gli istanti temporali in cui avvengono le operaziooni e i processi accedono a risorse condivise
 
 \textbf{se il risultato di una programmazione concorrente dipende dalla temporizzazione  dei processi, si dice che quella programmazione contiene una} \underline{RACE CONDITION}
 
 \underline{e necessario eliminare la race condition}
 scrivere programmi concorrenti e piu difficile che scrivere programmi sequenziali perche errori possono anche venire da errori nelle iterazioni tra loro
 
-esistono processi concorrenti “ignari l’uno dell’altro”, sono indipendenti m concorrono per le stesse risorse, il sistema deve arbitrarle  e sincronizzarle. questi non sono creati per lavorare insiem 
+esistono processi concorrenti “ignari l’uno dell’altro”, sono indipendenti m concorrono per le stesse risorse, il sistema deve arbitrarle  e sincronizzarle. questi non sono creati per lavorare insieme 
 
 esisstono processi indirettamente a conoscenza uno dell’altro che non si conoscono per id ma interagiscono indirettamente tramite le risorse condivise, anche loro devono essere ccordinate e sincronizzate
 
@@ -150,6 +155,9 @@ algoritmo di dekker
 algoritmo di peterson(piu semplice)
 
 sono entrambe soluzioni software, funzionano ma sono entrambe baste sul busy waiting, che non andrebbe usato.
+
+\textbf{busy waiting}: controllo terativo di una condizione di accesso a una CS, cosi il processo rimane attivo ma non fa nulla di utile
+
 \subsection{soluzioni hardware}
 altrimenti si possono usare soluzioni hardware, cioe usare istruzioni speciali per l’hardware
 
@@ -198,7 +206,12 @@ v aumenta il valore del semaforo
 
 v e p sono entrambe atomiche
 
-struttura dati e coda e ha una politica FIFO, senza s potrebbe avere starvation
+struttura dati è a coda e ha una politica FIFO, senza si potrebbe avere starvation
 
 non abbaimo eliminato il busy waiting ma lo abbiamo limitato molto
+
+
+
+
+
 \end{document}
