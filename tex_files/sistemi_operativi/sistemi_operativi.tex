@@ -208,7 +208,25 @@ v e p sono entrambe atomiche
 
 struttura dati è a coda e ha una politica FIFO, senza si potrebbe avere starvation
 
-non abbaimo eliminato il busy waiting ma lo abbiamo limitato molto
+non abbaimo eliminato il busy waiting ma lo abbiamo limitato a dentro le operazioni v e p.
+
+\subsection{semafori binari}
+un semaforo binario e un semaforo che puo assumere solo i valori 0 e 1, puo essere usato per garantire la mutua esclusione.
+
+ha lo stesso potere espressivo di un semaforo normale.
+
+\subsection{Problemi con i semafori}
+i semafori non garantiscono l'assenza di deadlock e starvation, e compito del programmatore evitare questi problemi
+
+ecco alcuni problemi calssici:
+\begin{itemize}
+    \item produttore-consumatore
+    \item buffer limitato
+    \item filosofi a cena 
+    \item lettori-scrittori
+\end{itemize}
+
+\subsubsection{produttore-consumatore}
 
 
 
