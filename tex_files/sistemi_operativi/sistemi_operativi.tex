@@ -226,8 +226,20 @@ ecco alcuni problemi calssici:
     \item lettori-scrittori
 \end{itemize}
 
-\subsubsection{produttore-consumatore}
+passi secondo Andrews per risolvere questo tipo di problemi:
+\begin {enumerate}
+\item definire il problema, identificare i processi, specificare i problemi di sincronizzazione, introdurre
+le variabili necessarie e definire un'invariante
 
+\item abbozzare una soluzione, produrre un primo schema di soluzione, e identificare le regioni che
+richiedono accesso atomico o mutualmente esclusivo
+
+\item garantire l'invariante, controlla che l'invariante sia sempre verificato
+
+\item implementare le azioni atomiche, esprimere le azioni atomiche e gli statement await utilizzando le primitive di
+sincronizzazione disponibili
+
+\end{enumerate}
 
 
 
