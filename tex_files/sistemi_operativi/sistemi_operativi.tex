@@ -241,6 +241,30 @@ sincronizzazione disponibili
 
 \end{enumerate}
 
+essendo i semafori costrutti di basso livello, e facile commettere errori(ad es. scambiare di ordine P e V), per questo esistono costrutti di piu alto livello come i monitor
+
+\section{monitor}
+
+monitor consiste in
+
+\begin{itemize}
+
+\item dati locali
+\item una sequenza di inizializzazione
+\item una serie di procedure che operano sui dati locali
+\end{itemize}
+
+le caratteristiche principali sono:
+\begin{itemize}
+    \item i dati locali sono accesssibili sollo alle procedure del modulo stesso
+    \item  un processo entra in un monitor invocando una delle sue
+procedure
+\item solo un processo alla volta può essere all'interno del monitor;
+gli altri processi che invocano il monitor sono sospesi, in
+attesa che il monitor diventi disponibile
+\end{itemize}
+
+slide 155
 
 
 
