@@ -264,7 +264,44 @@ gli altri processi che invocano il monitor sono sospesi, in
 attesa che il monitor diventi disponibile
 \end{itemize}
 
-slide 155
+sono costruiti un come gli oggetti in programmazione ad oggetti:
+\begin{itemize}
+\item codice di inizializzazione= costruttore
+\item procedure entri= metodi pubblici(sono richiamabili dall'esterno)
+\item dati locali= attributi privati
+\item procedure interne= metodi privati
+\end{itemize}
+
+il monitor fornisce un meccanismo di mutua esclusione, e inoltre ha bisogno di un meccanismo di sincronizzazione
+
+\subsection{sincronizzazione del monitor}
+
+esiste la varibile di condizione C, che ha due operazioni:
+\begin{itemize}
+\item wait(C): viene rilasciata la mutua esclusione e il processo che la invoca viene sospeso e messo in attesa sulla coda di C
+\item signal(C): se c'e un processo in attesa su C, uno di questi viene risvegliato e messo nella coda del monitor secondo FIFO, il chiamante viene sospeso e verra riattivato al rilascio della mutua esclusione.
+ \end{itemize}
+c.wait e c.signal sono diverse da p e v.
+
+signal non ha effetto se non ci sono processi in attesa, wait e sempre bloccante, e il processo risvegliato da signal viene eseguito per primo.
+
+\subsection{politiche di segnalazione}
+una politica di signaling determina cosa succcede quando un thread fa signal su una condition variable
+ne esistono diverse:
+\begin{itemize}
+    \item \textbf{signal urgent}: il thread che fa signal viene sospeso e il thread risvegliato prende la mutua esclusione, dobbiamo usare questo in questo corso.
+    \item \textbf{signal and wait}: il thread che fa signal continua l'esecuzione e il thread risvegliato viene messo in coda per la mutua esclusione
+    \item \textbf{signal and return}: il thread che fa signal continua l'esecuzione e il thread risvegliato prende la mutua esclusione
+    \item \textbf{signal and continue}: il thread che fa signal continua l'esecuzione e il thread risvegliato viene messo in coda per la mutua esclusione
+\end{itemize}
+
+slide 164:
+se value =0 allora wait, altrimenti il processo si esegue e value --
+se signal, il processso chiamante si sospende e viene risvegliato un processo in attesa che riprende da subito dopo dove si era fermato
+
+
+
+
 
 
 
