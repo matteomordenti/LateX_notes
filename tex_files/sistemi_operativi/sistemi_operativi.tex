@@ -299,6 +299,69 @@ slide 164:
 se value =0 allora wait, altrimenti il processo si esegue e value --
 se signal, il processso chiamante si sospende e viene risvegliato un processo in attesa che riprende da subito dopo dove si era fermato
 
+\section{messagge passing}
+
+nei semafori e monitor, la comunicazione avvieme tramite memoria condivisa
+
+il meccanismo detto: \textbf{message passing} è un paradigma di comunicazione tra processi,
+la sincronizzazione avviene tramite lo scambio di messaggi e non semplici segnalazione
+
+un messaggio è un insieme di dato formattati dal mittente e interpretati dal ricevente
+
+un meccanismo di "scambio messaggi" copia le informazioni di un messaggio da uno spazio di
+indirizzamento di un processo allo spazio di indirizzamento di
+un altro processo
+
+esistono le operazioni:
+\begin{itemize}
+\item send: manda il messaggio, il destinatario deve essere specificato
+\item receive: riceve il messaggio, il mittente può essere specificato
+\end{itemize}
+
+il passaggio dallo spazio di indirizzamento del mittente a
+quello del destinatario è mediato dal sistema operativo
+(protezione memoria)
+
+
+diversi tipi di message passing(MP):
+\begin{enumerate}
+    \item MP sincrono
+\begin{itemize}
+    \item send sincrono
+\item receive bloccante
+\end{itemize}
+
+\item MP asincrono
+\begin{itemize}
+\item send asincrono
+\item receive bloccante
+\end{itemize}
+\item MP completamente asincrono
+\begin{itemize}
+\item send asincrono
+\item receive non bloccante
+\end{itemize}
+
+\end{enumerate}
+
+\subsection{MP sincrono}
+sintassi send: void ssend(msg_t m, pid_t dst)
+
+Il mittente spedisce il messaggio m al processo dst, restando
+bloccato fino a quando dst non riceve il messaggio
+
+sintassi receive:
+msg_t sreceive(pid_t snd)
+
+il destinatario riceve un messaggio dal processo snd; se il
+mittente non ha ancora spedito alcun messaggio, il
+destinatario si blocca in attesa di ricevere un messaggio
+
+il destinatario può non essere specificato.
+
+
+
+
 
 
 
