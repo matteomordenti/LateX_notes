@@ -345,13 +345,12 @@ diversi tipi di message passing(MP):
 \end{enumerate}
 
 \subsection{MP sincrono}
-sintassi send: void ssend(msg_t m, pid_t dst)
+sintassi send: void \texttt{(ssend(msg\_t m, pid\_t dst)}
 
 Il mittente spedisce il messaggio m al processo dst, restando
 bloccato fino a quando dst non riceve il messaggio
 
-sintassi receive:
-msg_t sreceive(pid_t snd)
+sintassi receive:\texttt{ msg\_t sreceive(pid\_t snd)}
 
 il destinatario riceve un messaggio dal processo snd; se il
 mittente non ha ancora spedito alcun messaggio, il
@@ -359,10 +358,7 @@ destinatario si blocca in attesa di ricevere un messaggio
 
 il destinatario può non essere specificato.
 
-
-
-
-
+\subsection{MP asincrono}
 
 
 
