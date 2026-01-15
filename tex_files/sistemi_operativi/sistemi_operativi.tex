@@ -354,14 +354,46 @@ sintassi receive:\texttt{ msg\_t sreceive(pid\_t snd)}
 
 il destinatario riceve un messaggio dal processo snd; se il
 mittente non ha ancora spedito alcun messaggio, il
-destinatario si blocca in attesa di ricevere un messaggio
-
-il destinatario può non essere specificato.
+destinatario si blocca in attesa di ricevere un messaggio,
+il destinatario può non essere specificato mettendo ANY come snd.
 
 \subsection{MP asincrono}
 
+asend("stessa sintassi),
+il mittennte non si blocca dopo aver spedito
+
+areceve("stessa sintassi),
+il destinatario si blocca in attesa del messagio come sopra
+il destinatario puo non essere specificato mettendo ANY come snd.
 
 
+\subsection{MP completamente asincrono}
 
+sintassi asend identica completamente all'asincrono,
+il mittente non si blocca dopo aver spedito come sopra
+
+\texttt{msg\_t nb-receive(pid\_t snd)},
+il destinatario un messaggio m dal processo snd; se il mittente
+non ha ancora spedito alcun messaggio, la \texttt{nb\-receive}
+termina ritornando un messaggio "nullo"
+
+si puo non specificare il mittente mettendo ANY come snd come sopra.
+
+
+\subsection{note}
+in pratica ci sono molte varianti di message passing e ogni autore se ne inventa una
+
+\section {conclusione concorrenza}
+il \textbf{potere espressivo} di un meccanismo di sincronizzazione è la
+sua capacità di risolvere problemi di sincronizzazione tra processi, un programma A si dice abbia + o uguale potere espressivo
+di b se ogni programma B può essere riscritto in A
+
+\begin{itemize}
+\item i semafori(binari o no) hanno piu o uguale potere espressivo dei monitor
+\item message passing asincrono ha maggiore potere espressivo
+\item MP meccanismo piu diffuso
+\item monitor sono poco usati(con l'eccezione di java)
+\item semafori sono di livello troppo basso
+\end{itemize}
 
 \end{document}
