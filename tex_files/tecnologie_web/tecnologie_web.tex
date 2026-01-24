@@ -15,7 +15,170 @@
 
 
 \maketitle
-\section{intro}
+\section{uri}
+
+
+URi (uniform resource identifier): stringa di caratteri che identifica in modo univoco una risorsa su internet
+esistono due tipi di URI:
+\begin{itemize}
+    \item URL (uniform resource locator): indica l'indirizzo di una risorsa su internet
+    \item URN (uniform resource name): identifica una risorsa in modo univoco senza fornire il suo indirizzo
+\end{itemize}
+
+gli uRL sono piu immediati da usare ma piu soggetti a cambiamenti
+gli uRN sono piu stabili ma meno intuitivi
+
+Nella visione moderna, la distinzione tra locator e name è
+secondaria rispetto al concetto di schemi: ogni URI appartiene ad
+uno schema (la parte della stringa che precede i due punti).
+
+
+gli uri devono essere:
+\begin{itemize}
+\item trascrivibili
+\item Fornire identificazione, non interazione
+\item essre organizzati gerarchicamente
+\end{itemize}
+
+
+\texttt{\{URI=schema://authority/path?query\#fragment\}}
+
+schema = protocollo tcp usato.
+
+l’authority è una parte specifica dell’URI che identifica chi controlla o ospita la risorsa.
+
+La parte path è la parte identificativa della risorsa
+all’interno dello spazio di nomi identificato dallo schema e
+(se esistente) dalla authority.
+
+query: fornisce parametri aggiuntivi per identificare o
+interagire con la risorsa.
+
+fragment: identifica una parte specifica della risorsa
+o un punto di interesse all’interno della risorsa stessa.
+
+i caratteri degli uri possonoessere:
+\begin{itemize}
+    \item caratteri riservati: hanno un significato speciale all'interno dell'URI
+    \item caratteri non riservati: possono essere usati liberamente
+    \item caratteri escaped: usati per rappresentare caratteri speciali o non consentiti
+\end{itemize}
+
+Una \textbf{route} è un'associazione della parte path di un URI ad una
+risorsa gestita o restituita da un server web.
+
+esiste managed route: l server associa ogni URI ad una risorsa o
+attraverso il file system locale (risorse statiche) oppure
+generate attraverso una computazione (risorse dinamiche)
+
+File-system route: il server associa la radice della parte path
+ad una directory del file system locale e ogni filename valido
+all'interno di quella directory genera un URI corretto e
+funzionante.
+
+un uri assoluto contiene tutte le informazioni necessarie per localizzare una risorsa, mentre un uri relativo(uri reference) fornisce un percorso in relazione a un altro URI di base.
+
+risoluzione degli URI relativi: il processo di conversione di un URI relativo in un URI assoluto utilizzando un URI di base come riferimento.
+
+esistono diversi schemi
+
+http e https di gran lunga i piu usati
+shema file: per accedere a file locali
+schema data: per incorporare dati direttamente all'interno di un URI
+ftp: per trasferire file tra computer su una rete
+
+\section{codifica cartatteri}
+
+esistenza di tante lingue diverse crea difficolta
+
+per rappresentare i caratteri servono regole:
+ordine,
+contigiuta,
+raggruppamento in gruppi logici
+
+gli \textbf{shift} servono per cambiare il set di caratteri in uso, i codici liberi sono errori di trasmissione, poi ci sono i codici di controllo.
+
+ascii definisce 128 caratteri, usa 8 bit per rappresentare ogni carattere, il primo bit e di controllo, per questo sono 128 e non 256.
+
+ci sono inoltre 33 caratteri di controllo non stampabili.
+
+\textbf{code page:} estensioni di ASCII per supportare caratteri aggiuntivi. cosi vengono aggiunte le altre lingue.
+
+negli anni 90 due commissioni diverse hanno cercato di creare uno standard universale per la codifica dei caratteri:
+iso/iec e unicode, ora sono stati unificati.
+
+unicode contiene ora tutti i caratteri di tutti gli alfabeti, si cerca di essere efficenti e che ogni carattere aabia uno scopo.
+
+inoltre quando possibile si cerca di usare caratteri preesistenti per evitare problemi di compatibilita.
+
+iso ha 2 schemi di codifica: ucs 2  e ucs 4
+ucs 2 usa 2 byte per carattere, ucs 4 usa 4 byte per carattere.
+visto che ucs 4 ha 4 miliardi di combinazioni, fu inventato utf-8: usa da 1 a 4 byte per carattere, e e compatibile con ascii.
+
+i sistemi big endian e little endian gestiscono l'ordine dei byte in modo diverso.
+quindi per evitare ambiguita si usa il BOM(byte order mark) all'inizio del file.
+Zero-Width No-Break Space (ZWNBSP), un carattere che
+può essere usato in qualunque contesto di whitespace (cioè ovunque
+tranne in mezzo alle parole) senza modificare il significato dei testi, questo indica l'ordine dei byte.
+
+
+\section{markup}
+
+i dati esistono come valori isolati(25), come coppie chiave valore o etichette(eta:25), e come record, o raccolte di etichette(nome:matteo, eta:25, ecc...)
+ poi li puoi rappresentare in molti modi: alberi, tabelle, liste ecc....
+
+Testi sono molto soggettivi
+La teoria del markup descrive i testi come un albero ordinato ed
+etichettato di elementi e nodi di testo.
+
+HTML:Attuale formato di punta per i documenti di testo sul Web
+Il testo è organizzato in elementi racchiusi all'interno di tag. C'è un elenco di
+tag che costituisce il vocabolario HTML.
+Utilizza linguaggi aggiuntivi (ad esempio, CSS e Javascript per tipografia,
+layout e interattività sofisticati
+
+XML piu incentrato alla struttura dei dati rispetto ad HTML
+Permette di definire nuovi tag e strutture di dati personalizzate.
+
+esiste il formato binario per rappresentare i dati in modo piu efficiente, non e leggibile dall'uomo.
+il formato leggibile si invece.
+
+il parsing e il processo di conversione di un documento in un albero di oggetti in memoria.
+
+Il markup interno inserisce istruzioni di presentazione all'interno
+del testo, in mezzo alle parole.
+Il markup esterno prevede due blocchi di informazioni: il
+contenuto e il markup, separati e collegati da indirezione.
+
+esistono anche diversi scopi di markup:
+\begin{itemize}
+    \item presentazione: come visualizzare il testo
+    \item puntazione: struttura logica del testo
+    \item procedurale: istruzione per gli effetti.
+    \item descrittivo: informazioni sui dati a livello strutturale
+    \item referenziale: collegamenti tra parti del testo o tra testi diversi
+    \item metamarkup: informazioni sul markup stesso
+\end{itemize}
+
+\subsection{linguaggi di markup}
+TROFF/NROFF: uno dei primi linguaggi di markup, usato per la stampa di documenti tecnici.
+
+TEX: complesso ma permette macro. poi vi si ricavo LateX, piu semplice.
+
+lingauggi wiki: usato per creare pagine web in modo semplice.
+
+markdown: linguaggio di markup leggero, facile da leggere e scrivere, usato per documentazione e blog.
+
+
+
+
+
+
+
+
+
+
+
 \section{semantic web}
 semantic web:scrtuttura comune che consente di condividere e riutilizzare dati tra applicazioni, aziende e comunita
 ciattion link: permette di creare collegamenti
