@@ -388,6 +388,97 @@ diversi tipi di posizionamento:
     
     overflow: proprietà che controlla come gestire il contenuto che supera le dimensioni del suo contenitore. Può essere impostato su valori come visible, hidden, scroll o auto.
 
+La proprietà display gestisce la natura e l'organizzazione della scatola
+rispetto a contesto (mondo esterno) e contenuto (mondo interno)\\
+
+Il layout è l'organizzazione spaziale delle componenti strutturali
+più importanti di una pagina web. raramente viene usato il posizionamento naturale, sono state inventate tecniche di layout piu complesse.
+
+http://www.fabiovitali.it/TW/2025/layout/
+
+con grid si definisce una griglia bidimensionale per posizionare gli elementi in righe e colonne.
+
+Con display: flex; si può assegnare ad un elemento
+un'organizzazione visuale a contenuti flessibili e che si
+distribuiscono armonicamente nello spazio disponibile.\\
+
+ereditarietà: molte proprietà CSS vengono ereditate dagli elementi figli dai loro genitori, facilitando la gestione degli stili comuni.\\
+
+
+La keyword !important può essere aggiunta in fondo a
+qualunque statement e aumenta la priorità dello statement
+anche rispetto a statement successivi attivabili in cascata\\
+
+L’ordine con cui vengono considerate le varie regole non
+è dato solo dall’ordine in cui sono posti nei fogli di stile
+Infatti, viene applicato un algoritmo di ordinamento
+sulle dichiarazioni secondo alcuni principi (dal più al
+meno importante):
+\begin{itemize}
+    \item media-type (ad esempio, schermo vs stampa)
+    \item dichiarazioni con !important
+    \item origine di una dichiarazione(utente vs autore vs user-agent)
+    \item la specificità del selettore della dichiarazione
+    \item l'ordine delle dichiarazioni (l'ultima ha la precedenza)
+   
+    \end{itemize}
+
+    anche la cascata non è ordinata in modo assoluto, ma dipende dal contesto:
+    \begin{enumerate}
+    \item dichiarazione dell'user angent
+    \item dichiarazioni dell'utente 
+    \item dichiarazioni dell'autore
+    \item dichiarazioni importanti dell'autore(!important
+    \item dichiarazioni importanti dell'utente(!important)
+    \end{enumerate}
+
+    la scatola puo essere trasformata una volta generata con transform: function(parameters)\\
+
+    Le regole precedute da un "@", comunemente chiamate at rules,
+servono per specificare ambiti o meta-regole del foglio di stile
+ad esempio @import per importare regole da un altro foglio di stile\\
+
+Le media queries servono per specificare delle regole particolari
+che vengono attivate nel caso in cui il supporto usato per
+visualizzare la pagina Web soddisfa particolari vincoli
+Tra le varie espressioni utilizzabili, quelle più comuni permettono
+di realizzare dei vincoli sulla larghezza, altezza e colore supportati
+dal dispositivo\\
+
+Il linguaggio per creare media queries è complesso,
+ed è composto di regole separate, collegate da
+operatori come and, not, only.\\
+
+@keyframes è un blocco di regole per specificare lo
+stato iniziale (from), lo stato finale (to) ed eventuali stati
+intermedi (percentuali) di una o più proprietà per fare animazioni\\
+
+@layer organizze le regole CSS in livelli (layers) con priorità definite, permettendo di gestire la cascata in modo più strutturato e modulare.\\
+
+@container permette di applicare stili condizionali basati sulle dimensioni del contenitore di un elemento, piuttosto che sulle dimensioni della finestra del browser, facilitando il design reattivo.\\
+
+proprieta con valori customizzati iniziano sempre con --\\
+
+\subsection{framework CSS}
+
+forniscono librerie di stili predefiniti e componenti riutilizzabili per facilitare lo sviluppo web.
+
+sono molto facili da usare e gestiscono molte differenze tra browser, ma ne risulta un look standardizzato e poco personalizzabile.\\
+
+\textbf{twitter bootstrap}: uno dei framework piu popolari, offre una vasta gamma di componenti e stili predefiniti.
+
+Bootstrap definisce una griglia virtuale divisa in dodicesimi
+
+fornisce anche numerosi effetti grafici come navbar,tabulatori, finestre ecc....
+
+
+
+
+
+
+
+
+
 
 
 
