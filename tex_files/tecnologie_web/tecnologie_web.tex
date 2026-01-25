@@ -169,6 +169,246 @@ lingauggi wiki: usato per creare pagine web in modo semplice.
 
 markdown: linguaggio di markup leggero, facile da leggere e scrivere, usato per documentazione e blog.
 
+json: formato di dati leggero e facile da leggere, usato per lo scambio di dati tra applicazioni web.
+
+yaml: superset di json, piu leggibile per gli umani, usato per file di configurazione.
+
+sgml: standard per definire linguaggi di markup personalizzati, usato in applicazioni specifiche.
+sgml percmette di definire una grammatica per un linguaggio di markup.
+
+in un documento sgml ci sono 3 parti:
+\begin{itemize}
+    \item declaration: definisce la grammatica del documento
+    \item doctype: specifica il tipo di documento e la sua struttura
+    \item document instance: il contenuto effettivo del documento
+\end{itemize}
+
+XML e un sottoinsieme di SGML, ma piu semplice e piu facile da implementare.
+
+come sgml XML  ecomposto da:
+\begin{itemize}
+    \item elementi: unità di base del documento, racchiuse tra tag di apertura e chiusura
+    \item attributi: forniscono informazioni aggiuntive sugli elementi
+    \item entità: rappresentano caratteri speciali o sequenze di caratteri
+    \item PCDATA: testo contenuto all'interno degli elementi
+    \item commenti: note o spiegazioni all'interno del documento
+    \item processing instructions: istruzioni per il processore XML
+\end{itemize}
+
+i documenti XML possono essere validi o ben formati.
+un documento e ben formato se segue le regole sintattiche di XML anche senza essere vaalido.
+un documento e valido se segue uno schema o una definizione di tipo di documento (DTD).
+
+
+\section{HTML}
+
+HTML ora diventato motore di presentazione di applicazioni web complesse.
+
+c'è inoltre ancora confusione tra le varie versioni
+
+In HTML 4.01 e XHTML 1.0,
+ci sono molte pagine web scritte non conformemente agli standard ma comunque leggibili altre non funzionano.
+quindi ci sono due modalita di rendering:
+\begin{itemize}
+    \item modalita strict: il browser cerca di seguire gli standard il piu possibile
+    \item modalita quirks: il browser cerca di emulare i comportamenti non standard
+\end{itemize}
+
+HTML5: versione piu recente di HTML, introduce nuovi elementi e attributi per migliorare la semantica e l'accessibilità dei documenti web.
+ora è il living standard cioe in continuo sviluppo.
+
+Gli elementi \textbf{inline} non iniziano su una nuova riga, possono essere \textbf{fontstyle}(forniscono informazioni di rendering) o \textbf{phrase}
+
+poi ci sono gli elementi \textbf{block-level} o tag di blocco che iniziano su una nuova riga e occupano tutta la riga.
+
+ci sono poi le liste
+
+e poi ci sono gli elementi generici come \texttt{div} e \texttt{span} che non hanno significato semantico ma sono usati per raggruppare altri elementi e fornirgli caratteristiche dettate da altri attributi.
+
+\texttt{<header>} : rappresenta l'intestazione di una sezione o di un documento.
+
+\texttt{<footer>} : rappresenta il piè di pagina di una sezione o di un documento.
+
+HTML 5 riprende da XHTML 2.0 anche le “liste di navigazione” ossia particolari
+sezioni dedicate a raggruppare link alla pagina corrente (o a sezioni di) o ad
+altre pagine
+Si usa l’elemento \texttt{<nav>} molto spesso in combinazione con \texttt{<header>} e
+\texttt{<footer>}.
+
+
+\texttt{<a href>} o \texttt{<a name>} per creare collegamenti ipertestuali.
+
+immagini con \texttt{<img + attributo>}.
+
+Attraverso l'attributo srcset è possibile indicare più risorse per la stessa
+immagine, da usare alternativamente.
+\texttt{<figure>} e \texttt{<figcaption>} per raggruppare immagini e didascalie.
+
+tag di embedding come \texttt{<audio>}, \texttt{<video>}, e \texttt{<canvas>} per
+inserire contenuti multimediali e grafici interattivi.
+
+Con i FORM si utilizzano le pagine HTML per inserire valori che
+vengono poi elaborati sul server. I FORM sono legati ad
+applicazioni server-side
+
+si usa \texttt{<form +attributi>} per creare un modulo HTML. cio permette all'utente di interagire.
+
+ci sono diversi tipi di attributi associati all'input:
+\begin{itemize}
+    \item required: campo obbligatorio
+    \item placeholder: testo segnaposto
+    \item readonly: campo di sola lettura
+    \item list: l'input deve essere uno dei valori in una lista predefinita.
+     \end{itemize}
+    
+     Sono attributi globali quelli definiti su tutti gli elementi del
+linguaggio HTML.
+ ad esempio \texttt{style}, o \texttt{id}
+
+ attributi data-: Attributi personalizzati che possono essere utilizzati da applicazioni e script
+Javascript senza inquinare lo spazio dei nomi.
+
+attributi ARIA: Attributi che migliorano l'accessibilità dei contenuti web per utenti con disabilità.
+
+clori si possono definire tramite codice RGB o nome del colore.
+
+si usano tre tipi di lunghezza : pixel, percentuali(rispetto al contenitore), multi-lunghezze.
+
+HTML non tiene in conto maiuscole e minuscole nei tag e negli attributi, XHTML sì.
+
+in HTML i whitespace multipli vengono ridotti a uno solo, in XHTML vengono preservati.
+
+i tag di head:
+\begin{itemize}
+\item \texttt{<title>}: specifica il titolo del documento
+\item \texttt{<meta>}: fornisce metadati come charset,
+\item \texttt{<link>}: collega risorse esterne come fogli di stile
+\item \texttt{<style>}: contiene regole CSS interne
+\item \texttt{<script>}: include codice JavaScript
+\item \texttt{<base>}: specifica l'URL di base per i collegamenti relativi
+\end{itemize}
+
+elementi come\texttt{canvas}, \texttt{video} e \texttt{audio} permettono di creare contenuti multimediali interattivi direttamente nelle pagine web senza bisogno di plugin esterni.
+le interazioni possono essere anche complesse, come giochi o applicazioni grafiche.
+
+canvas ad esempio permette di disegnare direttamente sulla pagina.
+
+audio e video permettono di caaricare video e audio in diversi formati.
+
+i web components permettono di creare elementi HTML personalizzati riutilizzabili con funzionalità incapsulate.
+
+\section{CSS}
+
+CSS (Cascading Style Sheets) è un linguaggio di stile usato per descrivere la presentazione di un documento scritto in HTML o XML.
+La parola chiave è cascading: è prevista ed incoraggiata la
+presenza di fogli di stile multipli, che agiscono uno dopo
+l'altro, in cascata, per indicare le caratteristiche
+tipografiche e di layout di un documento HTML
+
+il sistema a cascata stabilisce l'ordine di priorità tra più regole di stile applicate allo stesso elemento contemporaneamente.
+
+HTML prevede l'uso di CSS in tre modi:
+\begin{itemize}
+    \item inline: direttamente nell'elemento HTML tramite l'attributo style
+    \item internal: all'interno di un elemento \texttt{<style>} nella sezione \texttt{<head>}
+    \item external: tramite un file CSS esterno collegato con l'elemento \texttt{<link>}
+\end{itemize}   
+
+innoltre uno stile può essere applicato a:
+\begin{itemize}
+    \item elementi specifici
+    \item tutti gli elementi di un certo tipo
+    \item elementi con una certa classe o ID
+    \end{itemize}
+
+    id assume un valore univoco su tutto il
+documento, in modo da identificare quello
+specifico elemento tra tutti gli altri
+
+class assume un valore qualunque e puo essere usato per raggruppare elementi simili.
+
+una proprieta  è un attributo di stile specifico che può essere applicato a un elemento HTML, come colore, dimensione del carattere, margini, ecc.
+
+uno statment indica una proprieta e il suo valore, ad esempio \texttt{color: red;}.
+
+un selettore e una parte di codice CSS che specifica a quali elementi HTML si applicano le regole di stile definite.
+
+una regola CSS è composta da un selettore e un blocco di dichiarazioni che definiscono le proprietà di stile da applicare agli elementi selezionati.
+
+alcune lunghezze sono assolute, altre relative.
+
+il \textbf{device pixel} e l'unita di misura piu usata per il web. è la minima unita di misura visualizzabile su uno schermo(dipende anche dalla densita dello schermo).
+
+La visualizzazione di un documento con CSS
+avviene identificando lo spazio di
+visualizzazione di ciascun elemento.
+
+ogni elemento ha un box rettangolare che ne definisce lo spazio occupato.
+
+il box model e creato in relazione alle altre ed e definito da \textbf{flusso} e \textbf{posizione}.
+
+i flussi sono gestiti impplicitamente o dalla proprieta di display.
+
+la scatola(box) e composta da:
+\begin{itemize}
+    \item margin: spazio esterno al bordo che separa le scatole le une dalle altre.
+    \item border: bordo della scatola
+    \item padding: spazio interno tra il bordo e il contenuto
+    \item content: area che contiene il contenuto effettivo dell'elemento
+    \end{itemize}
+
+    queste parti della scatola possono essere modificate tramite css. \\
+
+    è possibile annidare i selettori dentro un contenitore con \texttt{\&} \\
+
+    Il canvas è l'area virtuale di posizionamento degli elementi del DOM via
+CSS. E' un piano cartesiano infinito in larghezza e altezza, con l'asse delle x
+da sinistra a destra e l'asse delle y dall'alto in basso \\
+Il viewport è la parte del canvas che è attualmente visibile attraverso lo
+schermo o la finestra e può muoversi sul canvas in seguito a scrolling.
+pixel e l'unita di misura di riferimento delle canvas.
+esistono pixel la cui dimensione varia in base alla densità dello schermo(device pixel) e pixel la cui misura e fissata indipendenti dalla densità(css pixel).\\
+
+viewport width e viewport height: larghezza e altezza della finestra di visualizzazione attuale misurate con la percentuale dell'area visibile.\\
+
+Una lunghezza flessibile (flex) è una dimensione con unità
+fr che rappresenta una frazione dello spazio rimasto nel
+contenitore.\\
+
+diversi tipi di posizionamento:
+\begin{itemize}
+    \item statico: posizione predefinita, segue il flusso normale del documento
+    \item relativo: posizione relativa alla sua posizione originale
+    \item assoluto: posizione relativa al primo antenato posizionato
+    \item fisso: posizione relativa alla finestra del browser, rimane fissa durante lo scrolling
+    \item sticky: si comporta come relativo fino a quando non raggiunge una certa posizione, poi si comporta come fisso
+    \end{itemize}
+
+    \texttt{z\-index}: proprietà che determina l'ordine di sovrapposizione degli elementi posizionati. Un elemento con un valore di \texttt{z\-index} più alto sarà visualizzato sopra gli elementi con valori più bassi.\\
+    
+    overflow: proprietà che controlla come gestire il contenuto che supera le dimensioni del suo contenitore. Può essere impostato su valori come visible, hidden, scroll o auto.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
