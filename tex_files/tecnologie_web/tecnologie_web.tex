@@ -471,17 +471,240 @@ Bootstrap definisce una griglia virtuale divisa in dodicesimi
 
 fornisce anche numerosi effetti grafici come navbar,tabulatori, finestre ecc....
 
+\section{javascript}
 
+javascript associa eventi a funzioni(attributi) che vengono eseguite quando l'evento(click,mouse-over ecc....)
+ si verifica.
 
+ inserendo istruzioni javascript nei valori dell'attributo si creano chiamate callback.
 
+ 2 eventi particolari \textbf{load}(nella window ) e \textbf{DOMContentLoaded}(nel document) che indicano il caricamento della pagina.
 
+ i servizi serverside sono invece associati a uri.
 
+ NOde fornisce il modo di asssociare chiamte callback a uri.
 
+gli script possono essere eseguiti sia in maniera sincrona che asincrona.
 
+in maniera asincrona lo script puo essere sia caricato associato a un evento, al completamento di un'operazione di rete o dopo un timer.
 
+HTML visualizza l'output degli script in 4 modi diversi:
+\begin{itemize}
+    \item sulla finestra del browser
+    \item scrivendo sulla console
+    \item in una finestra di alert
+    \item modificando il DOM del doc visualizzato
+    \end{itemize} 
 
+lo script puo essere inserito in 3 modi:
+\begin{itemize}
+    \item direttamente dento l'attributo di un evento
+    \item all'nterno di un tag \texttt{<script>}
+    \item in un file esterno puntato dal tag \texttt{<script}
+    \end{itemize}
 
+    javascript e molto flessibile per i tipi di dati utilizzabili, 3 importanti:
+    numeri, booleani, stringhe. importanti anche i null e undefined.
 
+    poi ci sono gli \textbf{object}: tipi di dati strutturat di cui fanno parte anche gli array.
+
+    3 modi di definire una variabile:
+    \begin{itemize}
+        \item var: scope di funzione
+        \item let: scope di blocco
+        \item const: scope di blocco, non puo essere riassegnata
+        \end{itemize}
+
+        le funzioni javascript sono blocchi di istruzioni dotati di un nome e facoltativamente di paramentri.
+
+possono ma non sono obbligate a restituire un valore di ritorno. Le
+funzioni non sono tipate, i valori di ritorno sì (come al solito).
+
+Se manca un parametro, non restituisce errore ma assume che il parametro
+sia undefined.
+
+gli \textbf{object}: sono strutture liste di proprieta(coppie chiave-valore) non ordinate.
+il valore di una proprieta puo essere un object
+
+si puo accedere alle proprieta di un object in due modi:
+alert(object.proprieta) o alert(object["proprieta"])\\
+
+Un array è un object in cui le chiavi sono numeri interi assegnati
+automaticamente, per distinguerle usi le quadre anziche le graffe.
+
+gli array hanno diverse proprieta uniche come pop o push.
+
+JavaScript predefinisce alcuni oggetti utili per raccogliere
+insieme i metodi più appropriati per certi tipi di dati.
+es(object, Array, String, Math, Date, RegExp, ecc...)\\
+
+l'oggetto string fornisce metodi per manipolare le stringhe di testo.
+
+JSON (JavaScript Object Notation) è un formato dati derivato dalla notazione
+usata da JS per gli oggetti. Viene usato per lo scambio di dati tra
+applicazioni web e server.
+
+solo valori string, number, boolean, array o object
+Anche i nomi delle proprietà sono tra virgolette
+
+Tutti i linguaggi di programmazione più importanti
+oggi accettano e scrivono dati in JSON
+
+JSON e un singoletto che supporta solo 2 metodi:
+\begin{itemize}
+    \item stringify: converte un oggetto JS in una stringa JSON
+    \item parse: converte una stringa JSON in un oggetto JS
+    \end{itemize}
+
+    Una data è un oggetto che esprime un giorno e un orario rappresentandolo come il numero
+di millisecondi trascorsi dalla mezzanotte del 1 gennaio 1970 e la data in questione. Poiché
+in realtà è un numero, questo permette di fare operazioni aritmetiche e confronti numerici.
+
+MATH contiene funzioni matematiche e costanti predefinite.
+
+regexp è un oggetto che rappresenta espressioni regolari, usato per cercare e manipolare stringhe di testo.
+
+\textbf{oggetti principali del browser}:
+\begin{itemize}
+    \item window: rappresenta la finestra del browser
+    \item navigator: fornisce informazioni sul client
+    \item location: rappresenta l'URL corrente
+    \item history: gestisce la cronologia di navigazione
+    \item document: rappresenta il documento HTML caricato
+    \end{itemize}
+
+    il document è il più importante, rappresenta la pagina web caricata. ed ha proprietà e metodi per accedere ad ogni elemento della gerarchia (es. title, body, forms, images ecc....)
+
+Inoltre document rappresenta l'oggetto DOMDocument del
+DOM del documento visualizzato
+
+\subsection{DOM}
+il DOM (Document Object Model) è una rappresentazione ad albero della struttura di un documento HTML o XML, che consente agli script di accedere e manipolare il contenuto, la struttura e lo stile del documento in modo dinamico.
+il modo in cui il DOM viene costruito dal parsing fu deciso dal WHATWG
+
+Il Document Object Model è un interfaccia di
+programmazione (API) per documenti sia HTML sia XML.
+Definisce la struttura logica dei documenti ed il modo in cui si
+accede e si manipola un documento.
+
+Il core del DOM definisce alcune classi fondamentali per i
+documenti HTML e XML, e ne specifica proprietà e metodi.
+La classe principale di DOM è DOMNode, di cui la maggior
+parte delle altre classi è una sottoclasse.
+le classi principali sono:
+\begin{itemize}
+    \item DOMDocument: rappresenta l'intero documento, specifia metodi per accedere agli elementi principali come head e body
+    \item DOMElement: rappresenta un elemento HTML o XML, specifica metodi per accedere agli attributi e ai figli dell'elemento
+    \item DOMAttr: rappresenta un attributo di un elemento
+    \item DOMText: rappresenta il testo all'interno di un elemento
+ \end{itemize}
+
+DOMnode sprcifica metodi per navigare e manipolare l'albero del documento, come appendChild, removeChild, getElementsByTagName ecc....
+
+javascript interagisce con il DOM tramite l'oggetto document, che rappresenta il documento caricato nel browser, e fornisce questi metodi per accedere e manipolare gli elementi del DOM.
+
+il DOM per HTML permette di leggere e scrivere interi elementi, innerHTML legge e scrive il contenuto di un sottoalbero esclusi i tag radice.
+
+outerHTML legge e scrive l'intero elemento incluso il tag radice.
+
+il DOM non ha metodi veri e propri per la nvigazione, bisogna usare le proprieta children come(firstChild, lastChild, parentNode, nextSibling, previousSibling ecc....)
+
+ci sono metodii per accedere a nodi specifi come getElementById, getElementsByClassName, getElementsByTagName ecc....
+
+fu poi anche inventato querySelector e querySelectorAll che usano selettori CSS per trovare elementi.
+
+\subsection{javascript avanzato}
+
+I valori undefined, null e NaN sono tre keyword diverse ma concettualmente
+affini per anomalie del codice.
+
+undefined e il valore predefinito di una variabile non inizializzata. null indica l'assenza intenzionale di un valore.
+NaN (Not a Number) è un valore speciale che indica un risultato matematico non definito o non rappresentabile.
+
+i valori falsy sono valori che vengono considerati false in un contesto booleano. I valori falsy in JavaScript sono: false, 0,  meno 0, 0n (BigInt zero), "", null, undefined e NaN.
+tutti gli altri sono chiamati truthy.
+
+|| e \texttt{\&\&} non fanno casting ma valutano direttamente i valori.
+
+In pratica, moltissimi programmatori lo usano come verifica della presenza e
+istanziazione di una variabile o la disponibilità di una libreria o un servizio.\\
+
+in javascript le funzioni sono oggetti quasi come tutte le altre varibili, possonon essere assegnate a variabili o passate come parametri di funzione.
+si possono anche restituire funzioni da altre funzioni.
+o passare funzioni anonime.
+
+molte funzioni specifiche per gli array come array.sort o array.filter.
+
+javascript è object oriented 
+In un linguaggio object oriented tradizionale, la classe è un
+template sulla base del quale vengono istanziati gli oggetti del
+programma, specificando i membri (stati dell'oggetto, valori) e
+i metodi (comportamenti dell'oggetto, funzioni).
+
+\textbf{this}: parola chiave che si riferisce all'oggetto corrente in cui il codice è in esecuzione, che sia una funzione, un metodo o un costruttore.\\
+
+i linguaggi object-oriented sono divisi in due categorie principali: class-based e prototype-based.
+
+javascript e prototype based: gli oggetti possono ereditare direttamente da altri oggetti tramite il prototipo, senza la necessità di definire classi.
+
+Ogni oggetto in JavaScript è autonomo e si possono
+aggiungere tutti i metodi/proprietà che si vuole senza
+modificare gli altri.
+
+Per aggiungere proprietà/metodi condivisi da molti oggetti
+debbo usare l'oggetto prototype.
+
+javascript ha 4 tipi di scope:
+\begin{itemize}
+    \item globale: variabili dichiarate fuori da qualsiasi funzione
+    \item di funzione: variabili dichiarate all'interno di una funzione
+    \item di blocco: variabili dichiarate con let o const all'interno di un blocco
+    \item di modulo: variabili dichiarate all'interno di un modulo
+    \end{itemize}
+
+    JavaScript non ha protezione dei membri privati di un oggetto, ma sono tutti accessibili e
+manipolabili.
+
+C'è un quinto scope, detto closure, che è lo scope
+della funzione all'interno della quale viene
+definita un'altra funzione.
+
+Ad esempio, una funzione che restituisce una
+funzione ha uno scope che è sempre accessibile
+alla funzione interna, ma non dal mondo esterno.
+è usato per creare variabili private.
+
+Una function expression immediatamente
+invocata (IIFE) è una funzione anonima creata ed
+immediatamente invocata. serve per creare oggetti privati non ripetibili.
+
+\subsection{DOM avanzato}
+
+Xpath è un linguaggio di query per selezionare nodi in un documento XML o HTML basato sulla struttura ad albero del DOM.
+
+Gli assi identificano la direzione rispetto alla struttura del
+documento in cui andare a cercare l'oggetto da restituire rispetto
+al nodo contesto (NC).
+Gli assi principali sono ad esempio child, parent, descendant, ancestor, sibling ecc....
+alcuni possono essere abbreviati.
+
+i metodi classici per accedere ad elementi del DOM sono 3:
+\begin{itemize}
+    \item getElementById: restituisce l'elemento con l'ID specificato
+    \item getElementsByClassName: restituisce una raccolta di elementi con la classe specificata
+    \item getElementsByTagName: restituisce una raccolta di elementi con il tag specificato
+    \end{itemize}   
+
+    \textbf{Jquery}: framework javascript che semplifica la manipolazione del DOM, la gestione degli eventi e le operazioni AJAX.
+jQuery ha una peculiarità sintattica, l'uso della keyword \texttt{\$} per
+ogni comando della libreria
+
+jQuery definisce allora una funzione \texttt{\$}() che è un alias del
+costruttore jQuery(), e ha come parametro un selettore CSS.
+
+slide 12 19-javascript.
+
+il successo di jquery ha portato WHATWG a creare getElementsByClassName, querySelector e querySelectorAll.
 
 
 
