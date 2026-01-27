@@ -706,21 +706,95 @@ slide 12 19-javascript.
 
 il successo di jquery ha portato WHATWG a creare getElementsByClassName, querySelector e querySelectorAll.
 
+AJAX (Asynchronous JavaScript and XML) è una tecnica di sviluppo web che consente di aggiornare parti di una pagina web in modo asincrono, senza dover ricaricare l'intera pagina.
 
+non e un linguaggio ma un insieme di tecnologie:
+\begin{itemize}
+    \item HTML e CSS per la presentazione
+    \item DOM per la manipolazione dinamica del contenuto
+    \item XMLHttpRequest per la comunicazione asincrona con il server
+    \item JavaScript per orchestrare tutto
+    \end{itemize}
 
+    migliora l'esperienza utente rendendo le applicazioni web più reattive e interattive. ma può aumentare la complessità del codice e richiede una gestione attenta delle richieste asincrone.
 
+XMLhttpREquest(XHR) è la grande differenza tra AJAX e le tecniche precedenti di comunicazione client-server.
 
+sono state poi create alternative come funzioni jquery, librerie axios e fetch\\
 
+javascript nella programmazione ha una filosofia di asincronia basata su eventi e callback.
 
+perche l'asincronia funzioni corretteamente ci devono essere 4 condizioni:
+\begin{itemize}
+\item corretta esecuzione del codice
+\item tenere il browser libero
+\item flusso unico dell'algoritmo
+\item usare variabili locali
+\end{itemize}
 
+Una promessa è un oggetto che, si promette, tra un po' conterrà un valore. La
+promessa è creata dalla funzione chiamante e mantenuta dalla funzione chiamata.
+Qui nella versione semplice con un solo database,
 
+le promesse risolvono piuttosto bene i 4 problemi.
 
+funzionano anche le funzioni generator/yield per gestire l'asincronia in modo piu lineare.
+sono funzioni che possono essere messe in pausa e riprese, permettendo di scrivere codice asincrono in modo più simile a quello sincrono.
 
+le funzioni async/await sono un modo più moderno e leggibile per gestire l'asincronia in JavaScript. Una funzione dichiarata con la parola chiave async restituisce una promessa, e all'interno di essa si possono usare le parole chiave await per attendere il completamento di altre promesse.
 
+se hai molte chiamate indipendenti promise.all permette di eseguirle in parallelo e attendere che tutte siano completate.
 
+Introdotto nel 2023. Non ancora molto diffusa, ma...
+Mescola generatori, iteratori e await/async.
+ E' un loop in cui ogni iterazione è controllata da una funzione asincrona: se
+restituisce un valore si va avanti, mentre se dà null si esce dal loop:\\
 
+\subsection{modularizzazione in javascript}
 
+modularizzazione= suddividere il codice in moduli indipendenti e riutilizzabili
 
+javascript non l'ha avuto per molto tempo, ma ora esistono due sistemi principali:
+\begin{itemize} 
+    \item CommonJS: usato principalmente in Node.js, utilizza require() per importare moduli e module.exports per esportarli.
+    \item ES6 Modules: standard ufficiale di JavaScript, utilizza import e export per gestire i moduli.
+    \end{itemize}
+
+    i moduli aiutano a mantenere il codice organizzato, facilitano la manutenzione e promuovono il riutilizzo del codice.
+
+    \subsection{template}
+
+    le pagine web dianmiche spesso usano template per generare contenuti HTML in modo efficiente.
+
+    cioe creaano prima pagine con placeholder che vengono poi riempiti con dati dinamici al momento del rendering.
+
+    Ricorrere ad un linguaggio di programmazione per generare
+codice HTML però crea alcuni stupidi problemi sintattici
+solitamente ignorati dai linguaggi di programmazione tradizionali
+
+l'interpolazione di stringhe è una tecnica che consente di inserire variabili o espressioni all'interno di stringhe di testo in modo semplice e leggibile.
+si usa sopratutto con i template literals in JavaScript, che utilizzano backtick (`) e la sintassi \texttt{\${espressione}} per l'interpolazione.
+
+si possono usare anche framework come handlebrars o mustache per creare template piu complessi.
+
+o anche angular, react o vue che usano template per creare interfacce utente dinamiche.
+
+le nuove applicaioni stanno sempre piu strette alla sintassi tradizionale.
+
+Un componente è un insieme anche complesso di codice dotato
+di senso compiuto, autonomo, autosufficiente e incapsulato.
+Il nuovo modello di web vede le applicazioni come costruzioni
+di molteplici componenti indipendenti che scambiano tra loro
+informazioni.
+
+ci sono molti framework, anche HTML ha creato i web components per creare componenti riutilizzabili con funzionalità incapsulate.
+
+cioe puoi definire nuovi elementi personalizzati, creare un DOM shadow per incapsulare lo stile e il comportamento del componente, e riutilizzare questi componenti in diverse parti dell'applicazione o in progetti diversi.
+
+\subsection{routing}
+
+Con routing intendiamo l'assegnazione di un URI diverso ad ogni stato
+dell'applicazione web (cioè ad ogni selezione di contenuto differente).
 
 
 
