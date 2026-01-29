@@ -1,0 +1,95 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb} % Math packages
+\usepackage{geometry}
+\usepackage{hyperref} % Clickable links
+\usepackage{graphicx} % Images
+
+\geometry{a4paper, margin=1in}
+
+\title{Architettura degli elaboratori}
+\author{Matteo}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Un calcolatore è un sistema composto da processsori, memorie, e dispositivi di input/output.
+un \textbf{Bus} è un insieme di connessioni elettriche parallele che trasportano dati da un componente all'altro.
+
+Nell'architettura di Von Neumann viene introdotta l'idea di usare la memoria non solo per i dati ma anche per il programma.
+
+Collega la cpu e la memoria con un bus indirizzi, indicando la posizione dei dati. 
+Mentre su un altro bus dati memoria e cpu si scambiano i dati veri e propri.
+
+CPU composta date
+\begin{itemize}
+\item Unita di controllo: legge e interpreta le istruzioni.
+\item Unita aritmetico logica (ALU): esegue operazioni aritmetiche e logiche.
+\item registri: memorie veloci interne alla cpu.
+\end{itemize}
+
+ci sono diversi registri specializzati:
+\begin{itemize}
+\item Program counter (PC): indica la prossima istruzione da eseguire.
+\item Memory address register (MAR): contiene l'indirizzo di memoria da cui leggere o scrivere dati.
+\item Memory data register (MDR): registro che accede ai bus dei dati.
+\item Instruction register (IR): contiene l'istruzione che si sta per eseguire.
+\item Program status word (PSW): contiene informazioni sullo stato della CPU.
+\end{itemize}
+
+in pratica il ciclo di esecuzione di un'istruzione è:
+\begin{enumerate}
+    \item il contenuto di PC viene copiato in MAR e inviato alla memoria attraverso il bus indirizzi.
+    \item la memoria risponde inviando il dato all'MDR attraverso il bus dati.
+    \item il contenuto di MDR viene copiato in IR e decodificato.
+    \item l'istruzione passa alla ALU per essere eseguita.
+    \item se servono altri dati vengono letti dalla memoria nello stesso modo.
+    \item se serve il risultato e copiato in memoria attraverso MDR
+    \item il PC viene aggiornato per puntare alla prossima istruzione.
+\end{enumerate}
+ Questo ciclo e chiamato \textbf{fetch-decode-execute cycle}.
+
+ \textbf{data path}: insieme di registri e ALU che eseguono operazioni sui dati.
+
+ il percorso dei dati da memoria ad ALU, la loro esecuzione e il ritorno in memoria viene chiamato \textbf{ciclo di data path}, ed e governato da un clock.
+
+ durata ciclo di data path o ciclo di clock= 1/F, dove F e la frequenza di lavoro della CPU(cicli al secondo), misurata in heartz.
+
+ la velocita di esecuzione delle istruzioni ISA(instruction set architecture), è misurata con la durata di un ciclo di clock per i cicli necessari.
+
+ fissato il ciclo di clock, la velocita puo essere aumentata con il parallelismo.
+
+ negli anni 70 si sviluppo la differenza tra CISC e RISC.
+  CISC: complex instruction set computer, set di istruzioni complesso, con istruzioni che fanno operazioni complesse in un singolo ciclo.
+  RISC: reduced instruction set computer, set di istruzioni ridotto, con istruzioni semplici che richiedono piu cicli per operazioni complesse.
+
+  Risc usa la microprogrammazione, in modo da far fare diverse operazioni a pochi componenti.\\
+
+  piu cicli FDE possono essere eseguiti insieme con il \textbf{pipelining}
+
+  si sviluppano anche architetture che permettono il parallelismo.
+  , ad esempio cpu con piu ALU e control units.
+
+  oppure molte cpu possono lavorare in modo coordinato sulla stessa istruzione su dati diversi, creando un \textbf{array computer}
+
+se invece eseguono istruzioni diverse su dati, con una memoria condivisa, diversi si parla di \textbf{multiprocessor systems}.
+
+la forma piu complessa sono i \textbf{multicomputer systems}, con piu cpu, ognuna con memoria propria, collegate in rete.
+
+\subsection{memoria}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

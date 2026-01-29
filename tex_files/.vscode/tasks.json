@@ -1,0 +1,15 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build LaTeX notes",
+      "type": "shell",
+      "command": "/home/matteo/scripts/bin/build_notes.sh",
+      "args": ["${workspaceFolder}"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

@@ -1,17 +1,20 @@
 {
   "latex-workshop.latex.tools": [
     {
-      "name": "Build Notes",
+      "name": "Build Notes Script",
       "command": "/home/matteo/scripts/bin/build_notes.sh",
-      "args": []
+      "args": ["%WORKSPACE_FOLDER%"]
     }
   ],
+
   "latex-workshop.latex.recipes": [
     {
-      "name": "Build all notes",
-      "tools": ["Build Notes"]
+      "name": "Build all notes (script)",
+      "tools": ["Build Notes Script"]
     }
   ],
-  "latex-workshop.latex.recipe.default": "Build all notes"
-}
 
+  "latex-workshop.latex.recipe.default": "Build all notes (script)",
+
+  "latex-workshop.latex.autoBuild.run": "onSave"
+}
