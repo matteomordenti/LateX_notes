@@ -81,11 +81,41 @@ la forma piu complessa sono i \textbf{multicomputer systems}, con piu cpu, ognun
 
 \subsection{memoria}
 
+vari tipi di memoria
+\begin{itemize}
+\item memoria volatile: perde il contenuto quando viene spenta(es:ram).
+\item memoria non volatile: mantiene il contenuto quando spenta(es:rom, hard disk).
+\item memoria online: sempre accessibile
+\item memoria offline: il supporto deve essere montato
+\end{itemize}
 
+la memoria si organizza in celle, ogni cella è una sequenza di bit con il proprio indirizzo.
 
+cella di 8 bit=byte.
 
+molti calcolatori lavorano su blocchi da 32 o 64 bit, questi blocchi si chiamano word.
 
+le word possono essere memorizzate in celle standard, occupando piu celle consecutive.
+si puo fare in 2 modi:
+\begin{itemize}
+    \item big-endian: byte piu significativo all'indirizzo piu basso.
+    \item little-endian: byte meno significativo all'indirizzo piu basso.
+\end{itemize}
 
+la \textbf{cache} è una memoria poco capiente ma  veloce, che viene usata per contenere le word piu usate.
+
+la cpu prima cerca i dati nella cache, se non li trova li va a prendere in memoria principale.
+
+\textbf{principio di località}: dati usati recentemente gli uni dagli altri sono spesso in locazoni vicine.
+
+tipi di supporti:
+\begin{itemize}
+\item hard disk: memoria non volatile, lenta, grande capacita, usa piatti magnetici rotanti.(puo essere resa piu veloce con la tecnica RAID, che usa piu dischi in parallelo).
+\item SSD: memoria non volatile, veloce, grande capacita, usa memoria flash, piu veloce ma meno capiente.
+\item CD e DVD: memoria non volatile, usano supporti ottici, capacita limitata.
+\end{itemize}
+
+\section{porte logiche e circuiti combinatori}
 
 
 
