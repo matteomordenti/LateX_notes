@@ -125,6 +125,36 @@ Porte logiche sono basate sull'algebra di Boole, un'espressione booleana si cost
 porta nand è una porta logica utile per costruire circuiti combinatori, falsa solo quando a=1 e b=1.
 è universale e facile da costruire con transistor
 
+array logici programmmabili: collegando dei fusibili è possibile creare porte logiche personalizzate.
+
+\subsection{mappe di karnaugh}
+
+\textbf{mappe di karnaugh}: modo di rappresentare funzioni booleane. permettono di costruire un circuito combinatorio minimale.
+
+tabella bidimensionale in cui ogni mintermine ha una cella, e la cella ha un valore, 1 se vale, se 0 se no.
+
+puoi creare raggruppamenti che comprendono gruppi di certi letterali =1.
+
+all'interno di una mappa di karnaugh una copertura si dice minimale quando:
+\begin{itemize}
+\item i suoi raggruppamenti non è contenuto in raggruppamenti piu grandi.
+\item i suoi raggruppamenti contengono almeno una cella che non appare in altri raggruppamenti della copertura
+\end{itemize}
+
+\subsection{bus multi bit}
+
+circuiti combinatori collegati a connessioni da piu bit sono detti \textbf{bus}
+
+sono praticamente un raggruppamento di segnali e ogni coppia lavora separatamente come in una porta normale, per poi far uscire i seganli uno dopo l'altro.
+
+\section{codice binario}
+codifiche posizionali principali:
+\begin{itemize}
+\item binario
+\item ottale
+\item esadecimale
+\end{itemize}
+
 
 
 
