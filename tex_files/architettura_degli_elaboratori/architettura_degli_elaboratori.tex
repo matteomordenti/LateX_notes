@@ -155,6 +155,57 @@ codifiche posizionali principali:
 \item esadecimale
 \end{itemize}
 
+per convertire da bianrio a ottale prendi 3 cifre alla volta e calcola il numero, per esadecimale prendine 4.
+
+i numeri possono anche essere codificati \textbf{in eccesso} cioe dato k= bits e bias= $2^{k-1}$. somma numero e bias, e codifica regolarmente il risultato.
+ 
+es: -127 + bias(128) = 1.    1= 00000001
+
+se poi vuoi decodificare, decodifica il binario nel numero e sottrai il bias.
+
+nelle somme tra binari, il riporto finale nel complemento a 1 viene sommato all'inizio, nel complemento a 2 viene scartato.
+
+puo verificarsi \textbf{overflow}: se i due addendi hanno segni diversi non accade mai, se hanno lo stesso segno e il risultato ha segno opposto, si verifica overflow.
+
+\subsection{codifica  a virgola mobile}
+
+composto da sue parti: \textbf{mantissa}(o frazione): numero, ed \textbf{esponente}: potenza
+
+le operazioni su numeri floating point(virgola mobile) possono dare 2 tipi di errore
+\begin{itemize}
+\item overflow: numero in valore assoluto troppo grande
+\item underflow: numero in valore assoluto troppo piccolo
+\end{itemize}
+
+\textbf{normalizzare} un numero significa scrivere un numero in una forma standard dove la mantissa ha sempre la stessa struttura.
+
+in binario vuoi fare in modo che il numero piu significativo della mantissa(il primo) sia 1.
+
+puoi farlo spostando il primo 1 a sinistra di x posti e poi sottraendo x all'esponente e ricodificandolo.
+
+\subsection{standard di codifica}
+IEEE 754 è lo standard piu usato per i floating point. definisce diversi formati tra cui Binary32 che usa 1 bit di segno, 8 di esponente e 23 di mantissa.
+
+era impossibile codificare caratteri extraeuropei in ASCII quindi fu creato UNICODE, che usava 16 bit.
+UNICODE pero usa troppi bit per i caratteri piu semplici ed e vicino oramai all'esaurimento, quindi fu creato UTF-8.
+UTF-8 puo dinamicamente occupare da 1 a 4 byte, I bit iniziali indicano il formato specifico e la quantità di
+bit utilizzati.
+
+\subsection{bit di controllo}
+
+i codici binari o in lettura o in scrittura possono essere soggette a errori, per evitare questo esistono i bit di controllo.
+
+esistono sia bit di rilevazione che di correzione.\\
+
+\textbf{distanza di Hamming}: è il numero di bit di differenza tra due parole. la distanza di hamming di un codice è invece la minima dist. di Hamming tra tutte  le parole del codice.
+
+per rilevare d bit errati servono, la distanza di Hamming deve essere uguale a d+1, per correggerli deve essere d+2.
+
+uno dei codici di controllo piu semplici e il \textbf{bit di parita}: un bit che fa in modo che il numero di 1 sia pari, la dist. di hamming minima risulta essere 2.
+
+i bit di parita devono sempre rispettare l'equazione m(numero bit)+ r(num bit di contollo)+1 minore o uguale a $2^r$
+e vanno collocati nelle posizioni equivalenti alle potenze di 2 (1,2,4,8,16 ....) e ognuno controlla un sottogruppo di bit.
+
 
 
 
