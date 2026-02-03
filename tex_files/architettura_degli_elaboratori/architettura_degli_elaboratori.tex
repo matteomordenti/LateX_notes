@@ -207,6 +207,127 @@ i bit di parita devono sempre rispettare l'equazione m(numero bit)+ r(num bit di
 e vanno collocati nelle posizioni equivalenti alle potenze di 2 (1,2,4,8,16 ....) e ognuno controlla un sottogruppo di bit.
 
 
+\section{circuiti sequenziali}
+
+alcuni circuiti possono memorizzare l'input in e ripeterlo, in questi casi l'output non dipende piu solo dall'input, ma anche da altre circostanze.
+
+un esempio e il latch SR. il circuito contiene un ciclo e se entrambi gli input sono 0 il risultato e sconosiuto.
+
+si puo fare in modo che il latch risponda agli input solo durante certi momenti mettendo gli input e il ciclo di clock in porte AND
+
+il latch D ha un solo input e cio fa in modo che non si verifichi la situazion in cui entrambi gli input sono 1.
+
+Il latch D cambia il proprio stato mentre il clock è attivo, durante la
+fase 0 del clock memorizza l’ultimo valore di D alla fine della fase 1
+
+i circuiti con \textbf{commutazione sul fronte}: ovvero due stati stabili che cambiano in base al clock, sono detti flip-flop
+
+esistono vari flip-flop, noi usiamo il tipo D.
+
+il DFF(flip-flop tipo D) cambia stato dopo il fronte di salita in base in base agli input che ha ricevuto durante il fronte di salita.
+
+gli \textbf{one-bit-register}: memorizzano un bit nell'ultimo istante in cui load e stato attivato
+
+collegando tanti one-bit-registers puoi creare un w-bit-register
+
+esiste anche il \textbf{counter}: e un fcircuito sequenziale usato per crare i program counter, oltre a load ha reset che resetta a 0 il bit interno e inc che aumenta di 1 il valore memorizzato. se nessuno di questi comandi e usato ripete solo il val memorizzato.
+
+una memoria con locazioni da w bit puo essere realizzata con w-bit-registers e un circuito chiamato DIrect Access Logic indica a quale accedere.
+cosi si realizzano registri di memoria.
+
+puo essere utili avere circuiti logici anche dopo le uscite delle memorie per indicare quale delle uscite dei registri deve essere portata su out.
+
+\section{microarchitettura}
+
+il livello della microarchitettura si occupa di utilizzare le parti del livello logico digitale per creare linguaggio macchina.
+
+il processore hack ad esempio ha due registri D e d A che possono dare alla ALU i suoi 2 input,D puo contenere un precedente output, A un'istruzione o un precedente output.
+
+il flusso dei dati tra componenti viene gestito con MUX.
+
+i MUX e i bit di controllo vengono gestiti da una microarchitettura di circuiti combinatori. L'intero ciclo FDE viene completato in un clock.\\
+
+le memorie realizzate con flip-flop sono dette SRAM, sono veloci ma costose per quanto riguarda il costo in bit.
+
+SRAM vengono quindi usate per la cache , DRAM per la memoria centrale, e poi dischi.
+
+il passaggio da una memoria all'altra si gestisce con paginazione.
+
+Le DRAM o RAM dinamiche hanno un solo transister e un condensatore, che mantiene un bit.
+
+visto che il condesatore puo perdere la propria carica, sono necessari periodi di refresh, cio le rende piu lente.
+
+ci sono poi vari livelli di cache.
+
+una piu piccola dentro al cip della CPU, una media nello stesso involucro della CPU e una piu grande esterna\\
+
+con \textbf{localita temporale} si intende l'alta probabilita che la stessa cella venga acceduta in una breve distanza di tempo
+
+con \textbf{localita spaziale} si intende l'alta probabilita che celle di memoria vicine vengano accedute a breve distanza di tempo.
+
+esistono diversi metodi di gestione della cache. noi vediamo il "cache a corrispondenza diretta" o "direct mapped cache".
+
+suddividi la memoria in blocchi di dimensione m.
+
+crei n linee di cache di dimensione m. le linee sono iindicizzate da 0 a n-1.
+
+blocchi di memoria vengono inseriti in certe linee di cache "ad orologio", e si tiene conto di quale blocco e dove.
+
+ogni linea ha 1 booleano Valid che dice se la linea e occupta, data che contiene i dati e tag che indica il blocco della emoria principale contenuto.
+
+quando l'accesso alla cache ha successo e il blocco di memoria e gia presente in cache, si dice che e avvenuto un cache hit, altrimenti e cache miss.
+se cache miss, il blocco deve essere portato in cache, qui ce un momento in cui dati di cache e dati di memoria centrale non corrispondono, cio puo creare problemi.
+
+esistono gli stessi prooblemi tra memoria centrale e memoria di massa(dischi), qui si usa la paginazione.\\
+
+a differenza del processore hack, istruzione e operandi spesso sono caricate insieme, questo richiede un ciclo di clock molto lungo.
+
+spesso si pre-carica la prossimo istruzione mentre la prima e in esecuzione, questo e gestito dall' IFU( instruction fetch unit)
+Questo e un esempio di pipeline.
+
+i salti pero possono essere problematici per le pipeline, visto che richiedono di scartare le istruzioni successive.
+quindi architetture moderne cercano di predire i salti.
+
+ci sono anche problemi di concorrenza e accesso a sezioni critiche.
+
+\section{ISA del processore hack}
+
+per usare un processore lo si deve programmare tramite un suo linguaggio assembly, un set di istruzioni detto "instruction set".
+
+il linguaggio assembly corrisponde ad istruzioni macchina subito eseguibili. e praticamente una versione leggibile del binario.
+
+il linguaggio macchina supportato dall'architettura dipende dall'instrucion set architecture(ISA)
+
+possiamo definire l'ISA come l'insieme degli elementi dell'architettura visibili al compilatore.
+
+ci sono due approcci per migliorare le architetture: RISC e CISC
+
+la hack non e facilmente classificabile.
+
+hack e una macchina a 16 bit costituita da 
+\begin{itemize}
+\item RAM: composta da registri a 16 bit. salva dati di lavoro
+\item ROM: composta da registri a 16 bit, contiene istruzioni dei programmi da eseguire.
+\item registro A
+\item registro D
+\item M: registro di memoria puntato da A
+\item ALU per eseguire poi le istruzioni.
+\item program counter: il registro che contiene l'indirizzo del registro ROM con la prossima istruzione.
+\end{itemize}
+
+esistono 2 tipi di istruzioni:
+\begin{itemize}
+\item A instruction: servono solo a caricare valori sul registro A.
+\item C instruction: istruzioni che eseguono una computazione prelevando dai registri A, D ed M e poi registrando il nuovo valore.
+\end{itemize}
+
+le istruzioni C hanno 3 parti:
+\begin{itemize}
+\item dest: specifica dove memorizzare la computazione.
+\item comp: specifica la computazione da eseguire.
+\item jump: specifica se, dopo avere eseguito dest=comp, bisogna saltare a un'altra istruzione. Lo fa dicendo di aggiornare il PC al valore del registro A.
+
+\end{itemize}
 
 
 
