@@ -329,6 +329,37 @@ le istruzioni C hanno 3 parti:
 
 \end{itemize}
 
+cose da ricordare:
+\begin{itemize}
+\item M è sempre uguale a MEM[A], quindi se @3; M=MEM[3]
+\item mentre A e D sono registri della CPU, gli M sono celle di memoria della RAM.
+\item l'architettura non supporta A+M o M+A, devi sempre fare D=M; D=D+A. 
+\item puoi fare A=M, ma attento che se fai un altro @ cancelli A
+\end{itemize}
+
+\textbf{etichette}: da usare come se fossero valori, usate per indicare destinazioni per i salti.
+divise in 2 parti: la dichiarazione, indicata da @, dove finisce il salto.
+
+e l'uso di etichetta, da cui parte il salto, deve essere uguale al nome della destinazione.
+
+\section{compponenti hack}
+
+chip memory composta da RAM(16k), chip screen(8k), usta per la mappa dello schermo. e chip keyboard, un singolo registro per il tasto usato.
+
+lo schermo ha una funzionalita di tipo RAM,Esiste una corrispondenza diretta fra ogni pixel del
+monitor ed i corrispondenti bit memorizzati ad opportuni
+indirizzi all’interno del chip Screen.
+
+il chip screen contiene 8k parole da 16 bit.
+
+cpu contiene ALU e 3 registri, A,D, PC.
+
+2 bit di controllo della ALU sono nr e zr
+
+il primo bit del binario e 0 se si tratta di una A instruction.
+
+
+
 
 
 
