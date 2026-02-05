@@ -342,7 +342,7 @@ divise in 2 parti: la dichiarazione, indicata da @, dove finisce il salto.
 
 e l'uso di etichetta, da cui parte il salto, deve essere uguale al nome della destinazione.
 
-\section{compponenti hack}
+\section{componenti hack}
 
 chip memory composta da RAM(16k), chip screen(8k), usta per la mappa dello schermo. e chip keyboard, un singolo registro per il tasto usato.
 
@@ -358,6 +358,124 @@ cpu contiene ALU e 3 registri, A,D, PC.
 
 il primo bit del binario e 0 se si tratta di una A instruction.
 
+\subsection{assembler}
+
+assembler traduce assembly in linguaggio macchina(binario)
+
+assembler hack traduce da ssembly hack a un file un numero binario a 16 bit per ogi riga in ASCII
+
+\textbf{symbol table}: tabella con tutti i simboli, sia i predefiniti(R0....R15) che eventuali simboli, che vengono aggiunti man mano. a ognuno viene asseganto un valore.
+
+processo di assemblaggio:
+\begin{enumerate}
+\item inizializzazione: si apre il file in input e si inizializza la symbol table con i simboli predefiniti.
+\item prima passata: si passa l'input, inserendo etichette nella symbol table, e aggiungendo 1 a un contatore ogni volta che hai una A/C instruction. Quando incontri una definizione di etichetta(es: (loop)), le assegni il valore ddel contatore in quel momento +1 e non aumenti il contatore.
+\item seconda passata: si apre in scrittura l'output e si assegna a ogni istruzione il suo valore. per le istruzioni con simbolo, si cerca in symbol table il valore del simbolo, se non ce(non e etichetta) gli si assegna un valore a partire da 16 e lo si memorizza in symbol table.
+\end{enumerate}
+
+\section{livello ISA}
+
+ora parliamo dell'ISA in modo piu generico.
+
+livello ISA rappresenta l'interfaccia tra hardware e software, non comprende solo l'instruction set ma anche tutto cio che e visibile al compilatore ed e necessario per generare codice macchina.
+
+\textbf{formato di istruzioni}: set di regole per facilitare l'implementazione logico-digitale, in hack erano A/C instruction.
+
+in un computer generico, le istruzioni ISA contengono:
+
+\textbf{opcode} o codice operatio, cioe l'istruzione da eseguire(somma,and .... )
+
+e gli operandi, rappresentati attraverso i loro indirizzi.
+
+a differenza di hack istruzioni diverse possono usare un numero diverso di bit per la codifica in binario, inoltre anche il nunero di operandi puo cambiare.
+
+si puo segliere se usare piu bit per opcode o per gli indirizzi(operandi), determinando il numero di indirizzi o un numero maggiore di operazioni.
+
+anche la dimensione delle intere istruzioni puo caambiare in base alla word. istruzioni piu piccole occupano meno memoria ma sono meno facili da decodificare.
+
+se ad esempio una word è 32 bit, e divis in 4 byte, i byte poi sono salvati in celle di memoria di ordinamenti fissati.
+
+l'ordine puo essere:
+\begin{itemize}
+    \item big endian: 0-1-2-3
+    \item little endian: 3-2-1-0
+\end{itemize}
+
+esistono diversi modi per indicare come reperire i vari operandi da usare:
+\begin{itemize}
+\item indirizzamento immediato: l'istruzione contiene gia l'operando da usare.
+\item indirizzamento diretto: l'istruzione contiene l'indirizzo completo della cella di memoria da cui prendere l'operando.
+\item indirizzamentoo a registro: l'operando viene preso da un registro.
+\item indirizzamento a registro indiretto: l'operando viene prelevato dalla memoria a un indirizzo puntato da un registro.
+\item indirizzamento indicizzato: l'istruzione contiene un "offset" che va sommata al contenuto di un registro per ottenere l'indirizzo di memoria.
+\item indirizzamento a stack: Si considera una parte di memoria da gestire secondo un modalità LIFO
+(last in-first out), ovvero tramite uno stack
+\end{itemize}
+
+inoltre ci sono 3 tipi di operazioni:
+\begin{itemize}
+\item trasferimento: è possibile trasferire dati da memoria a registri, da registri a memoria e da registro a registro.
+\item operazioni aritmetico-logico binarie: esistono anche operazioni con floating point oltre che interi.
+\item salti
+\end{itemize}
+
+\textbf{procedura}: serie di istruzioni che viene chiamata, esegue un compito, e torna al punto di partenza.
+
+solitamente esistono istruzioni anche per la chiamata di procedura.
+
+si ha la chiamata \textbf{CALL} che interrompe l'esecuzione sequenziale, tiene traccia del punto di partenza e comincia ad eseguire la procedura invocata.
+
+il \textbf{return}(o ret) invece fa tornare a d eseguire l'istruzione dopo la chiamata, tipicamente inserendo l'indirizzo di ritorno nel program counter.
+
+implementare le chiamate a procedure richiede inizializzare ed allocare la memoria necessaria ad eseguirle, tale spazio di memoria viene chiamato \textbf{activation record}(o record di attivazione) della procedura invocata.
+
+i record di attivazione sono organizzati a stack(last in first out), quando termina una procedura si riattiva la precedente.
+
+il record di attivazione si puo considerare l'insieme di tutti i dati necessari ad eseguire una singola chiamata di una procedura.
+
+per gestire lo stack dei vari record di attivaazione, si usano 2 puntatori: FP(frame pointer) che punta all'inizio del record corrente e SP(stack pointer) che punta alla cima dello stack.
+
+quando lo stack e vuoto SP=FP
+
+poi man mano che aggiungi o togli funzioni o variabili SP cambia di continuo,  FP e fisso ma cambia al cambio della funzione. in cima a ogni funzione, subito sotto a dove sarebbe SP e sopra all'indirizzo di ritorno, ce un puntatore al FP precedente che permette di aggiornare FP nel posto giusto al ritorno sul record precedente.
+
+come conponenti del record di attivazione abbiamo:
+\begin{itemize}
+\item parametri
+\item indirizzo di ritorno: per rimettere in esecuzione il chiamante, cioe l'indirizzo dell'istruzione successiva al chiamante.
+\item vecchio frame pointer: Serve per ripristinare FP al momento del ritorno al chiamante
+\item variabili locali
+\end{itemize}
+
+questa organizzazione a stack permette di usare un'indirizzamento a stack e indicizzato per quanto riguarda al vslore corrente di FP.
+
+
+serve uno stack per ogni thread in esecuzione.
+
+ora esiste il problema di concorrenza, visto che ognuno di questi ha bisogno di uno spazio di memoria, ce il rischio che un programma scriva nella memoria sbagliata.
+
+\subsection{trap}
+
+\textbf{trap}: chiamata di procedura che si verifica al rilevamento di un errore rilevante.
+
+fa trasferire il controllo a un processo detto \textbf{gestore di trap}
+
+le trap sono quindi sincrone al programma, visto che vengono scatenate da un'istruzione del programma.
+
+come le trap, gli \textbf{interrupt} sono condizioni che interrompono il programma per affidare il controllo a un gestore( detto interrupt service routine, o ISR).
+
+gli interrupt pero non si riferiscono solo ad errori ma anche a notifiche ed eventi.
+
+gli interrupt sono fondamentali per evitare il busy waiting.
+
+gli interrupt sono invece asincroni, cioe sono scatenati da eventi indipendentemente dal programma in esecuzione.
+
+Poi non e sempre bene che un interrupt interrompa l'esecuzione attuale, ad esempio l'ISR non dovrebbe essere interrotto da altri interrupt.
+Per questo il sistema operativo puo \textbf{mascherare} un interrupt, facendo in odo che non interrompa. Certi interrupt importanti possono essere dichiarati non mascherabili.
+
+si puo anche assegnare una priorita ad ogni interrupt creando una gerarchia di priorita.
+
+\section{livello del sistema operativo}
 
 
 
