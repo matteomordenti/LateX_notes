@@ -477,6 +477,175 @@ si puo anche assegnare una priorita ad ogni interrupt creando una gerarchia di p
 
 \section{livello del sistema operativo}
 
+Le risorse messe a dispozisione dall'architettura vengono gestite dal sistema operativo(un software)
+
+il sistema operativo e l'interfaccia tra il calcolatore e i programmi.
+
+il sistema operativo gestisce tutto, dalla gestione della memoria, gestione dei processi, delle periferiche ecc....
+
+abbiamo come step di interpretazione di un codice:
+\begin{enumerate}
+\item alto livello(livello 5). poi compilatore
+\item assembly(A/C instruction)(livello 4). poi assembler.
+\item poi livello macchina del SO(livello 3) poi SO.
+\item ISA(come livello 4 ma binario)(livello 2) poi microprogrammazione
+\item Livello microarchitettura(livello 1)(esecuziona da CPU)
+\item Livello logico-digitale(seganli elettrici dentro porte logiche)(livello 0)
+\end{enumerate}
+
+\subsection{paginazione}
+
+negli anni 60 i computer avevano memoria RAM limitata e non riuscivano a usare appieno i loro bit, se ad esempio un computer ha 16 bit e 4k locazini, quindi ha solo 4096 indirizzi fisici rispetto ai 65535 che potrebbe avere.
+
+gli indirizzi non fisici sono detti virtuali.
+
+in ogni momento poi massimo 4k indirizzi sono posti in memoria primaria e il resto sono nella memoria secondaria.
+
+dal punto di vista dell'accesso alla memoria, appare davvero da 64k locazioni, il problema e scambiare continuamente il contenuto tra le 2 memorie.
+
+i pro principali della paginazione sono: possiamo avviare piu processi e questi hanno a disposizione piu memoria(puoi avere programmi piu grandi della ram ma ne puoi usare massimo l'equivalente della ram nello steso momento), ogni processo ha uno spazio di indirizzamento virtuale e cioli tiene separati,i programmi possono astrarsi dalle questioni implementative.
+
+contro: la memoria secondaria e meno performante della memoria principale, creando un bottleneck, inoltre tutto cio richiede lavoro.
+
+abbiamo 2 necessita: mappare gli indirizzi virtuali per poterli recuperare e gestire la sostituzione continua di pagine.
+
+l'approccio per risolvere entrambi si chiama \textbf{paginazione}
+
+sia le memoria principale che la secondaria sono divisi in parti di uguale dimensione. quelle dell primaria sono dette \textbf{blocchi}, quelle della secondaria sono dette \textbf{pagine}
+
+se la dimensione di una pagina e da $2^k$ bit, k bit sono usati come dimensione dell'offset per trovare una locazione all'interno di una pagina.
+
+bisogna \textbf{mappare}(cioe associare un indirizzo fisico a uno virtuale) gli indirizzi virtuali a cui si accede negli indirizzi fisici.
+
+il mapping viene fatto dall' SO in modo trasparente al programma.
+
+questo viene fatto  dalla \textbf{memori management unit}(MMU) che, all'interno di una \textbf{tabella delle pagine} segna, per ogni pagina se questa e in memoria primaria e se si in quale blocco.
+
+L’indice della pagina in cui cade l’indirizzo
+virtuale cercato si ottiene guardando
+l’indirizzo stesso, esclusi i k bit
+usati per identificare l’offset.
+
+La tabella indica quali bit
+inserire al posto di questo
+indice di pagina.
+
+l'indirizzo logico indicano gli indirizzi fisici. sono fatti cosi:
+indichiamo con $2^m$ lo spazio di indirizzamento totale(es 64k bit), mentre n indica sempre l'offset.
+
+all'interno dei primi m bit dell'indirizzo logico si trova il numero della pagina, negli ultimi n bit si trova l'offset con cui trovare l'indirizzo.
+
+\subsubsection{page faults}
+
+il \textbf{page fault} è una trap che avviene quando si accede a una pagina non in memoria.
+
+il gestore della trap ora deve scegliere quale pagina rimuovere per fare posto.
+questa sostituzione si dice \textbf{page swapping}
+
+la scelta di quale algoritmo liberare viene presa da algoritmi di paginazione.
+
+2 tipici algoritmi di paginazione:
+\begin{itemize}
+\item least recently used: si rimuove la pagina usata meno di recente, puo essere implementato come lista.
+\item FIFO: si rimuove la pagina in memoria principale da piu tempo, puo essere implementata tramite coda.
+\end{itemize}
+
+si dice virtual address space lo spaazio in memoria secondaria riservato a un processo. questo fa parte del suo " execution context".
+
+\textbf{context switch}: l'interruzione e salvataggio di un processo per riprenderne un altro.
+
+\subsubsection{dirty bit}
+
+quando devi liberare un blocco, ma questo non e staato modificato, non e necessario ricopiarlo in memoria secondaria.
+
+per tenere traccia di questo si usa la tecnica del \textbf{dirty bit}
+
+quando si carica una nuova pagina in un blocco, si inizializza un certo bit a 0, se poi si accede in scrittura alla pagina nel blocco il bit diventa 1.
+
+\subsection{segmentazione}
+
+\textbf{frammentazione interna}: quando un programma richiede piu del multiplo preciso della dimensione delle pagine e rimangono dei byte liberi nell'ultima pagina.
+
+puoi organizzare la memoria in segmenti,ciascuno con il proprio spazio di indirizzamento, in modo da usarne il piu possibile.
+
+a differenza della paginazione, la frammentazione non e trasparente, il programma deve esserne a conoscenza e usarla.
+
+ogni segmento di dimensione p usa gli indirizzi da 0 a p-1.
+
+per distinguere segmenti di frammenti divers, gli indirizzi dovranno avere l'indicatore del relativo segmento.
+
+\textbf{registri di segmento}, vengono usati per mantenere l'inizio di ogni segmento in memoria
+
+i segmenti non usati tornano in memoria secondaria, ma al cambio con altri segmenti, possono riamanere altri bit vuoti, questi gruppi di bit vuoti si chiamano \textbf{lacune} e il fenomeno della loro creazione e detto \textbf{frammentazzione esterna}, risolta tramite \textbf{compattamento}
+
+ci sono diverse tecniche di cambio segmenti per cercare di ridurre la frammentazione esterna, 2 sono:
+\begin{itemize}
+\item best fit: si inserisce il nuovo segmento nella lacuna sufficente piu piccola
+\item first fit: si inserisce nella prima lacuna sufficente
+\end{itemize}
+
+per mitigare la frammentazione esterna, inoltre, si puo combinare paginazione e segmentazione.
+Quindi virtualizzare la memoria tramite
+paginazione, mantenendo in aggiunta la divisione logica offerta dai segmenti.
+
+praticamente puoi dividere ogni segmento in pagine e poi riportare in memoria secondaria le pagine che non ti servono.
+
+e pero molto lavoro per la MMU che deve tenere anche una tabella dei segmenti e una per ogni segmento paginato.
+
+nella pratica poi la segmentazione varia molto in base ai casi.
+in fatti molti aspetti della paginazione che abbiamo visto sono superflui per i moderni pc a 64bit.
+
+distinguiamo ad esempio 3 modalita di architettura
+\begin{itemize}
+\item modalita reale: i registri dei
+segmenti contengono l’indirizzo dell’inizio del segmento in memoria, e non c’è
+protezione degli accessi. Non c’è paginazione. Spesso usato ancora in avvio.
+\item Modalità protetta (CPU in protected mode, vedi architetture x86 a 32bit
+successive): i registri dei segmenti puntano a dei descrittori salvati in tabelle in
+memoria che, oltre all’indirizzo, definiscono modalità di accesso e dimensioni del
+segmento (max 4GB). Queste tabelle sono la Global Descriptor Table (GDT) per
+segmenti condivisi dall’intero sistema e le Local Descriptor Tables (LDT) per
+quelli locali ai processi. Può usare paginazione e richiede MMU.
+\item Long mode: nei sistemi a 64bit (vedi architetture x86-64 AMD e Intel) quando non
+in compatibility-mode, effettivamente si elimina la necessità dei segmenti vista la
+enorme capacità di indirizzamento.
+Si mantengono solo 2 segmenti generici, ma con indirizzo di inizio a 0 e senza
+dimensione massima. La protezione della memoria è garantita tramite paginazione
+(i processi hanno accesso solo alle proprie pagine, nelle quali si salvano le porzioni
+corrispondenti a code/heap/stack/etc), e la paginazione è obbligatoria e multilivello.
+\end{itemize}
+
+\subsection{linking e collegamento dinamico}
+
+diverse parti di un programma possono essere compilate separatamente per creare moduli oggetto.
+
+quindi poi serve una fase di collegamento fatta da un linker.
+
+ogni modulo oggetto viene realizzato assumendo di usare il proprio spazio di indirizzamento a partire da 0,ma poi non sara piu cosi.
+bisogna quindi convertire questi indirizzi in indirizzi globali.
+
+il linker decide l'ordine dei moduli, inserisce all'inizio informazioni di servizio per eseguire il programma, e poi prende nota della lunghezza di ogni modulo, e dell'inizio dell'indirizzo del nuovo spazio di indirizzamento.
+
+e poi necessario cambiare gli indirizzi dentro i moduli oggetto, cio e detto \textbf{rilocazione}
+
+per i riferimenti esterni servono piu informazioni.
+
+le informazioni devono essere gia nell'assembly dei riferimenti,con cio e la tabella degli indirizzi di inzio, il linker puo rilocare anche le informazioni esterne.
+
+In alcuni casi, le procedure che vengono usate, non vengono inserite
+nell’eseguibile: vengono collegate dinamicamente al momento
+dell’esecuzione del programma stesso.
+
+si fa spesso con le librerie ad esempio.
+
+un modo per farlo e generare volutamente una trap chiamando un indirizzo falso in una chiamata a una funzione dinamica.
+il programma fa la trap e cede al controllo al sistema operativo, questo legge il nome vero della funzione, la cerca , la trova e la patcha.
+
+Un esempio e la DLL(dynamic link library) una libreria comune a moltissimi programmi, senza ognuno dovrebbe aver all'interno l'intera libreria.
+
+\section{virtual machine hack}
+
+
 
 
 
