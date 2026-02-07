@@ -657,6 +657,15 @@ la VM permette di eseguire push e pop sulla pila ma anche operazioni con 1 o 2 a
 
 per fare queste operazioni bisogna: fare pop dei valori dell'operazione OP, eseguire l'operazione OP(x,y), fare push del risultato in cima alla pila. cosi gli operandi in cima alla pila sono rimpiazzati dal risultato.
 
+il primo valore poppato e sempre x e il secondo y.
+
+la VM hack e segmentata e ogni segmento ha dati diversi, bisogna quindi menzionare sempre i segmenti su cui operiamo.
+
+Per implementare le chiamate a funzioni, ogni funzione in esecuzione
+avrà due propri segmenti specifici che vengono creati e distrutti prima e
+dopo l’esecuzione:
+
+\textbf{argument} per gli argomenti(parametri di invocazione) e \textbf{local} per le variabili locali alla funzione. inoltre ce un segmento static, comune a tutti con le variabili globali.
 
 
 
