@@ -645,8 +645,17 @@ Un esempio e la DLL(dynamic link library) una libreria comune a moltissimi progr
 
 \section{virtual machine hack}
 
+vitual machine e un modello astratto di calcolo, usata come livello intremedio tra linguaggio ad alto livello ed assembly. e usata nella compilazione a due livelli.
 
+compilazione  due livelli: anziche compilare direttamente dal limguaggio sorgente al lingguaggio target compili prima i limguaggi sorgente in un linguaggio intermedioe poi target.
 
+nella compilazione di secondo livello il programma ISA dovra occuparsi della gestione della memoria.
+
+il modello di calcolo della VM e costituito da una pila(SP: stack pointer)  su cui leggiamo o scriviamo dati nella memoria di lavoro.
+
+la VM permette di eseguire push e pop sulla pila ma anche operazioni con 1 o 2 argomenti.
+
+per fare queste operazioni bisogna: fare pop dei valori dell'operazione OP, eseguire l'operazione OP(x,y), fare push del risultato in cima alla pila. cosi gli operandi in cima alla pila sono rimpiazzati dal risultato.
 
 
 
