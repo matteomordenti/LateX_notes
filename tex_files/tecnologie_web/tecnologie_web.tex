@@ -861,7 +861,133 @@ il modello a triple e semplice e minimalista. il modello RDF inoltre e modulare:
     il modello tabellare e il migliore che abbiamo nel complesso, ma e inefficente per le relazioni M-N
     il modello ad albero ha senso per le relazioni di tipo 1-N meno mer M-N
 
+    \section{HTTP}
+
+    HTTP e un protocollo client server, generico e stateless.
+
+    client-server: è il client ad attivare la connessione e chiedere dati al server, questo accetta.
+
+    generico: HTTP è indipendente dal formato dato delle risorse.
+
+    stateless: il server non e tenuto a mantenere informazioni tra una connessione e l'altra.
+
+    HTTP permette lo scambio di risorse identificate da URI, separa le risorse dalla loro rappresentazione e fornisce un meccanismo per negoziare il formato dei dati.
     
+    inoltre implememnta sofisticate politiche di caching e  permette di copiare risorse sul server.
+
+    una connessione HHTP e formata da una serie di richieste e di risposte.
+
+le connessioni possono essere gestite con 2 metodi:
+\textbf{pipelining}: lerichieste sono ricevute prima di dare risposta alla precedente ma le risposte sono date nello stesso ordine.
+
+\textbf{multiplexing}: puo avere molteplici richiesete e risposte nella stessa connessione ma le risposte possono essere date non in ordine e ricostruite nel client.
+
+novita introdotte con HHTP 2:
+
+Operazioni PUSH: il server anticipa le richieste successive del client
+
+Compressione degli header: i dati non sono trasmessi in chiaro ma
+compressi (e in parallelo)
+
+una richiesta HTTP si compone di:
+\begin{itemize}
+\item Method: azione del server richiesta dal client
+\item URI: identificativo della risorsa lacale al server
+\item version: umero della versione http
+\item Headers: sono linee RFC 822 divise in headers generali, headers di entita, headers di richiesta.
+\item body: un messaggio MIME
+\end{itemize}
+
+\textbf{metodi}: i metodi indicano le zione che il client vuole si compiano sulla risorsa(in realta la copia della rappresentazione della risorsa)
+
+sono chiamati anche verbi HTTP
+
+i metodi principali sono: get, head, post, put, delete, options, patch.
+
+GET e il metodo piu frequente. recupera qualcosa, si attiva ad esempio cliccando su un link.
+
+Il metodo POST serve per trasmettere informazioni dal
+client al server relative alla risorsa identificata nell'URI
+
+la richiesta invece si comppone di:
+\begin{itemize}
+\item status code: indica se la richiesta è andata a buon fine o meno.
+\item version: numero di versione di HTTP
+\item Headers: uguale alla richiesta
+\item body: messaggio MIME
+\end{itemize}
+
+esistono diverse classi di status code
+
+\begin{itemize}
+\item 1xx: informativo
+\item 2xx: successo
+\item 3xx redirection(servono altre informazioni)
+\item 4xx client error
+\item 5xx server error
+\end{itemize}
+
+Gli \textbf{header} invece sono righe di testo che specificano informazioni aggiuntive.
+
+header generali: info sulla trasmissione
+
+header di entita: info sulla risorsa o i dati trasmessi
+
+header di richiesta: info sulla richiesta effettuata.
+
+gli header generali non si applicano necessariamente alla risorsa trasmessa.es: ora della trasmissione.
+
+Gli header dell’entità danno informazioni sul body del
+messaggio, o, se non vi è body, sulla risorsa specificata.
+
+gli header della richiesta sono usati dal client per specificare al server info su se stesso o la richiesta
+
+gli header della risposta sono info che il server specifica al client su se stesso o la richiesta
+
+Tra gli header della risposta sono particolarmente utili
+quelli che definiscono il tipo di dato contenuto nella
+risposta.
+
+nelle risposte infatti content-length e content-type sono obbligatori.
+
+\textbf{metodi HTTP}
+
+metodo: l'azione che il client richiede al server
+
+due proprieta importanti: sicurezza, idempotenza
+
+\textbf{sicurezza}: un metodo e sicuro se non genera cambiamenti interni allo stato interno del server
+
+\textbf{idempotenza}: un metodo e idempotente se l'effetto sul server di piu richieste e lo stesso di una sola.
+
+GET: richiede una risorsa al server e sicuro e idempotente.
+
+HEAD: simile a get ma chiede solo header non il corpo, è sicuro e idempotente.
+
+POST: serve per trasmettere informazioni dal client al server sulla risorsa identificata nell'URI, non e ne sicuro ne idempotente
+
+PUT: trasmette info dal client al server creando o sostituendo una risorsa specificata, è idempotente ma non sicuro.
+
+DELETE: rimuove le informazioni connesse con una risorsa. è idempotente ma non sicuro.
+
+PATCH: aggiorna parzialmente la risorsa identificata nell' URI(modifiche incrementali), ne sicuro ne idempotente.
+
+OPTION: viene usato per verificare opzioni, requisiti e
+servizi di un server, senza implicare che seguirà poi una
+altra richiesta, sicuro e idemptotente.
+
+
+HTTP/2 la seconda revisione a larga scala di HTTP.
+Introduce il multiplexing e il supporto per operazioni di PUSH, cioe il server puo mandare al client piu di quanto chiede anticipando altre richieste.
+
+concettualmente e identico ma i messaggi non sono piu plain text ma sono compressi.
+ogni flusso di dati(stream) e separato in frame separati che viaggiano anche sovraposti(multiplexing)
+
+algoritmo di compressione si chiama HPACK (RFC 7541).
+
+
+
+
 
 
 \end{document}
