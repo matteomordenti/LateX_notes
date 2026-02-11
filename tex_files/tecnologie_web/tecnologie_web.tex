@@ -985,9 +985,201 @@ ogni flusso di dati(stream) e separato in frame separati che viaggiano anche sov
 
 algoritmo di compressione si chiama HPACK (RFC 7541).
 
+poi e uscito HTTP/3 con l'obbiettivo di aumentare ancora le prestazioni.
+
+non si basa piu su TCP/ipertestuali
+
+\textbf{cookie}= breve informazione scambiata tra server e client. Il client mantiene alcune informazioni sulle connessioni precedenti, e
+le manda al server di pertinenza ogni volta che richiede una risorsa. permette di ristabilire il diritto a una risorsa richiesta.
+
+Alla prima richiesta di uno user-agent, il server fornisce la risposta
+ed un header aggiuntivo, il cookie, con dati arbitrari, e con la
+specifica di usarlo per ogni successiva richiesta.
+
+il serevr associa questi dati a informazioni sulla transazione. Ogni volta che lo user-agent accederà a questo sito, rifornirà i dati
+opachi del cookie che permettono al server di ri-identificare il
+richiedente
+
+i cookie hanno quindi due header, uno spedito dal server(set-cookie) e uno spedito dal client(cookie)
+
+i cookie contengono dati arbitrari in formato testuale.
+
+vari tipi di utilizzo dei cookie:
+\begin{itemize}
+\item cookie persistenti: durata molto lunga o senza scadenza, usati per preferenze del sito o login.
+\item cookie di sessioni: cookie che durano una sessione
+\item cookie di terze parti: vengono da altri domini, usati per pubblicita, possono ricostruire la navigazione dell'utente. 
+\end{itemize}
+
+molto usati per autenticazione e autorizzazione(verificare che l'utente abbia i permessi)\\
+
+per aggregare piu richieste ci sono due modi:
+
+session-based: ad ogni richiesta il server memorizza un ID di sessione e info sull'utente
+
+token-based: il client memorizza un token mandato dal server che rispedisce ad ogni richiesta.
+
+www-authenticate e il server per l'autenticazione. possono esserci criteri diversi per spedire dati di autenticazione.
+
+schema basic: schema semplice ormai in disuso,1 il server indica il contesto di sicurezza tramite www-authenticate.
+2 Il client chiede all'utente le informazioni di autorizzazione, crea una
+nuova richiesta GET e fornisce le informazioni di autorizzazione
+codificate in Base64 nell'header Authorization
+3 Il client continua a mandare lo stesso header per le successive
+richieste allo stesso realm.
+la password e esposta, non chiude la sessione da solo
+
+per evitare di spedire la password in chiaro viene inventato lo schema digest:
+Il client spedisce nell'header Authorization una fingerprint della password,
+ovvero la password crittografata con il metodo MD5 (RFC 1321). il server manda anche informazioni crittografate a caso per mascherare la password. poi il server decifra. l'operazione e ripetuta ogni volta.
+
+schema bearer: il client non spedisce la password ma un token.
+il solo possesso del token basta per la'utenticazione visto che il token era stato precedentemente generato dal server.
+questo e il meccanismo generico per l'autenticazione token-based, esiste anche quella session-based.
+
+Una sessione è un insieme di azioni "collegate" ed eseguite
+in un dato intervallo di tempo
+
+autenticazione session-based: dopo aver verificato l'identita dell'utente il server genera una sessione associata all'utente e vi memorizza informazioni, poi il client dovra solo spedire l'ID.
+
+I cn token JWT e ottenuto codificando in base 64 i dati in input e dividendoli in 3 parti: HEADER, PAYLOAD e SIGNATURE.
+
+\textbf{HEADER}: specifica il tipo di token e la cifratura usata.
+
+\textbf{PAYLOAD}: informazioni di interscambio orrganizzate in affermazioni(claims), possono essere di 3 tipi
+\begin{itemize}
+    \item Registered: claim predefiniti utili per descrivere il token
+    \item public: arbitrari ma dichiarati nello IANA JSON Web Token
+Registry per evitare conflitti 
+\item private: arbitrari e personalizzati
+\end{itemize}
+
+\textbf{SIGNATURE}: Il token (header e payload, in base64) può essere
+firmato con una chiave segreta lato server in modo da
+poterlo verificare nelle successive richieste e, se
+corrotto, non considerarlo valido. e solo codificato e non cifrato.
+
+esistono diverse librerie per generare e validare token JWT.
+
+in Express.js l'autenticazione e realizzata attraverso appositi meddleware
+
+CORS: esiste il cross-site-vulnerability. cioe il rischie che in un dominio protetto si intrufoli codice malizioso da altrii domini.
+CORS permette di usare il metdo OPTION per fare una lista dei domini ammessi.
+
+CORS= cross-origiin resource sharing.
+si usa solo per le connessioni AJAX
+nella richiesta: origin, per indicare il dominioda cui proviene
+nella rsposta: Access-Control-Allow-Origin per indicare gli altri
+domini da cui è permesso caricare contenuti
+
+si usa anche un preflight(verifica preliminare)della possibilita di eseguire metodi cross-scripting (OPTIONS)
+
+in express.js si usa il meddleware corss per supportare CORS.
+
+HTTP offre sofisticati meccanismi di caching, molto utili in
+applicazioni RESTFUL.
+
+HTTP 1.1 introduce due modi per verificare la validita dei dati in cache: server-specifed expiration(server indica la scadenza della risorsa), inoltre il cache control permette di controllare altri componenti della cache; e heuristic expiration(la cache stabilisce valori euristici di durata delle
+risorse, dopo le quali assume che sia scaduta.).
+
+Anche dopo la scadenza, nella maggior parte dei casi, una
+risorsa sarà ancora non modificata, e quindi la risorsa in cache
+valida.
+
+per evrificarlo puoi usare head per verficare l'ultima data di modifica, oppure(piu corretto) fare una richiesta condizionale. se la richiesta e stata modificata si fornisce una nuova risorsa, altrimenti si fornisce la risposta 304(not modifiied)
+
+\section{open API}
+
+una API è RESTFUL se usa i principi REST nei servizi che offre
+
+per documentare un API è necessario fornire:
+
+end-point(URI/route)
+
+metodi HTTP di accesso
+
+rappresentazione in input e output
+
+condizioni di errore e i messaggi che restituisce in questi casi.
+
+Swagger(ora OPen api) è un ecosistema di tool per la creazione, costruzione,
+documentazione e accesso ad API soprattutto in ambito REST.
+
+Open API può essere serializzato sia in JSON che in YAML
+Standard industriale per API REST
+
+YAML (Ain't a Markup Language) è una linearizzazione di
+strutture dati con sintassi ispirata a Python:
+
+superset di JSON
+
+in open api
+Per ogni percorso (path o endpoint) si definiscono tutte
+le possibili operazioni che, secondo i princìpi REST,
+sono identificate dal metodo HTTP corrispondente
+
+\section{REST}
 
 
+UN API WEB è uninterfaccia HTTp che permette a un'applicazione remote di usare i servizi dell'applicazione.
 
+possono essere applicazioni automatiche che usano i dati del'applicazione o applicazzioni web che permettono di eseguire azioni sui dati dell'applicazione.
 
+REST sta per representational state transfer ed e il modello
+architetturale che sta dietro al World Wide Web e in generale dietro alle
+applicazioni web “ben fatte” secondo i progettisti di HTTP.
+
+Applicazioni non REST si basano sulla generazione di un API che
+specifica le funzioni messe a disposizione dell’applicazione, e alla
+creazione di un’interfaccia indipendente dal protocollo di trasporto e ad
+essa completamente nascosta
+
+Viceversa, un’applicazione REST si basa fondamentalmente sull’uso
+dei protocolli di trasporto (HTTP) e di naming (URI) per generare
+interfacce generiche di interazione con l’applicazione, e fortemente
+connesse con l’ambiente d’uso.
+
+l'obbiettivo e creare API affidabili e consistent, facili da usare e da predire.
+
+Modello CRUD(create, read, update, delete) pattern tipico delle applicazioni del trattamento dati, ipotizza che le operazioni siano una delle 4 dell'acronimo.
+
+architettura REST si basa su 4 punti:
+\begin{itemize}
+\item definire come risorsa ogni concetto rilevante dell'applicazione web.
+\item associarci un URI come identificatore e selettore primario
+\item usare verbi HTTP per eseguire ogni operazione scondo il modello CRUD; cioe Put per creare, GET per leggere, POST per fare update, e DELETE per cancellare.
+\item Esprimere in maniera parametrica ogni rappresentazione dello
+stato interno della risorsa, personalizzabile dal richiedente
+attraverso un Content Type preciso
+\end{itemize}
+
+REST individua due concetti fondamentali: \textbf{individui} e \textbf{collezioni}(insieme di individui)
+
+fornisce URI di entrambi
+
+Ogni operazione avviene su uno e uno solo di questi concetti.
+
+collezioni poossono contenere individui o altre collezioni.
+
+è consigliabile strutturare gli URI per esprimere queste relazioni.
+
+Le collezioni debbono essere visivamente distinguibili
+dagli individui. Per questo usiamo un termine plurale e
+uno slash in fondo all'URI
+
+Un filtro genera un sottoinsieme specificato attraverso
+una regola di qualche tipo.
+
+In pratica, il POST può essere usato in una moltitudine di
+situazioni secondo una semantica decisa localmente, purché
+non sovrapposta a quella degli altri verbi
+
+una API è restful se usa REST nei servizi che offre.
+
+\textbf{riassunto}: REST considera ogni applicazione come un ambiente di cui
+si cambia lo stato attraverso un insieme limitato di comandi (i
+metodi HTTP) applicati alle risorse (espresse attraverso URI)
+e visualizzate attraverso una esplicita richiesta di
+rappresentazione (attraverso un content Type MIME).
 
 \end{document}
