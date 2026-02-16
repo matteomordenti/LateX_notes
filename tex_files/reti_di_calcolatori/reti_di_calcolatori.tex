@@ -7,7 +7,7 @@
 
 \geometry{a4paper, margin=1in}
 
-\title{reti di calcolatori}
+\title{reti di calcolatori appunti}
 \author{Matteo}
 \date{\today}
 
@@ -15,7 +15,32 @@
 
 
 \maketitle
+\section{intro}
+\section{sicurezza}
 
-\section{Introduction}
-intro
+abbiamo 4 proprieta per la sicurezza:
+\begin{itemize}
+\item confidenzialità: abbiamo un sender che cripta i messaggi e un receiver che li decodifica, solo il receiver deve capire
+\item autenticazione: il sender e il receiver devono confermare l'identità reciproca.
+\item integrita: bisogna controllare che il messaggio non sia modificato
+\item disponibilita: il servizio deve essere disponibile agli utenti
+\end{itemize}
+
+
+un intruso puo intercettare i messaggi,leggerli,  modificarli, mandarne di suoi, rubare l'identità o intasare servizi.
+
+\subsection{codifica}
+
+esistono percio schemi di codifica per crittare i messaggi.
+sender e receiver hanno entrambi una chiave di decodifica per decifrare i messaggi e si accordano per avere la stessa.
+
+gli intrusi non devono ottenere la chiave, percio esistono diversi standard di codifica per garantire la sicurezza.
+
+DES: data encryption standard. codifiica della chiave inizialmente a 56 bit, poi triplicato perche ers diventato troppo facile fare "brute force" fino ad ottenere la chiave.
+
+
+
+
+
+
 \end{document}
