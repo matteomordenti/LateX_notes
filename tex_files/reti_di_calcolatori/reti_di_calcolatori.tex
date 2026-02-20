@@ -7,7 +7,7 @@
 
 \geometry{a4paper, margin=1in}
 
-\title{reti di calcolatori appunti}
+\title{reti di calcolatori }
 \author{Matteo}
 \date{\today}
 
@@ -29,15 +29,51 @@ abbiamo 4 proprieta per la sicurezza:
 
 un intruso puo intercettare i messaggi,leggerli,  modificarli, mandarne di suoi, rubare l'identità o intasare servizi.
 
-\subsection{codifica}
+noi vogliamo garantire sia la cifrazione del messaggio, che l'identita dell'interlocutore che l'integrità del messaggio.
+
+si possono usare socket cifrati a livello trasporto, se no si puo cifrare anche a livello rete.
+
+cufratura e la prima risorsa di sicurezza che viene usata
+
+la prima arma che abbiamo per difenderci è la cifratura
+
+\subsection{crittografia}
 
 esistono percio schemi di codifica per crittare i messaggi.
 sender e receiver hanno entrambi una chiave di decodifica per decifrare i messaggi e si accordano per avere la stessa.
 
 gli intrusi non devono ottenere la chiave, percio esistono diversi standard di codifica per garantire la sicurezza.
 
-DES: data encryption standard. codifiica della chiave inizialmente a 56 bit, poi triplicato perche ers diventato troppo facile fare "brute force" fino ad ottenere la chiave.
+gli intrusi hanno solo il testo cifrato con cui lavorare, e ci sono due approcci di attacco:
 
+    \textbf{brute force}: si provano tutte le chiavi una alla volta
+
+    \textbf{analisi statistica}
+
+    esistono due tipi di chiavi:
+    \begin{itemize}
+    \item simmetriche: i due interlocutori condividono la stessa chiave
+    \item asimmetriche
+    \end{itemize}
+
+DES: data encryption standard. chiavi simmetriche, codifica della chiave inizialmente a 56 bit, poi viene inventato il 3DES, cioe criptare 3 volte con tre chiavi. perche ers diventato troppo facile fare "brute force" fino ad ottenere la chiave.
+
+AES: advanced encryption standard. chiavi simmetriche. processa i dati in blocchi da 128 bit. le chiavi possono essere da 128, 192 o 256 bit. molto piu efficace del DES.
+
+\textbf{cifratura a chiave pubblica}: ha chiave non simmetrica, ognuno ha 2 numeri primi comme chiavi, una solo e privata(segreta) e unica per ognuno, l'altra e pubblica e uguale tra i due. per decifrare devi fare prodotto di due chiavi e messaggio.
+
+debolezza nel fatto che in teoria se il messaggio è troppo ridotto diventa facile decrittarlo.
+
+la chiave privata è fortissima, la debolezza e il messaggio.
+
+quindi esistono i bit di padding, cioe bit senza significato che vengono aggiunti sempre per rendere il messaggio almeno 256 bit, cosi ci sono $2^256$ combinazioni.
+
+la reale forza dell'algoritmo rguarda la fattorizzazione dei numeri primi di grandi dimensioni.
+
+i numeri primi sono divisibili solo per se stessi, crittando usando l valore del prodotto di 2 numeri primi, per trovarlo devi per forza conoscere quei 2 numeri.
+quindi fare brute forcing e estremamente difficile.
+
+\subsection{autenticazione}
 
 
 

@@ -36,6 +36,26 @@ la chiave e condivisa dal sender insieme alle esche.
 
 DES= standard di cifrazione, era a 56 bit, fu fatta una challenge e fu hakerato in meno di un giorno, cosi il numero di bit fu aumentato di 3 volte.
 
+chiave simmetrica= chiave uguale tra i 2 interlocutori.
+
+fare brute force della chiave e estremamente difficile, ci sono $2^64^17$ possibili chiavi
+
+questo algoritmo che applica 3 volte DES si chiama tri-DES
+
+ora anche questo non è piu molto usato perche è nato un nuovo standard, il AES(advanced encryption standard)
+
+\textbf{cifratura a chiave pubblica}: ha chiave non simmetrica, ognuno ha 2 numeri primi comme chiavi, una solo e privata(segreta), l'altra e pubblica. per decifrare devi fare prodotto ddi due chiavi e messaggio.
+
+debolezza nel fatto che in teoria se il messaggio è troppo ridotto diventa facile decrittarlo.
+
+la chiave privata è fortissima, la debolezza e il messaggio.
+
+quindi esistono i bit di padding, cioe bit senza significato che vengono aggiunti sempre per rendere il messaggio almeno 256 bit, cosi ci sono $2^256$ combinazioni.
+
+la reale forza dell'algoritmo rguarda la fattorizzazione dei numeri primi di grandi dimensioni.
+
+i numeri primi sono divisibili solo per se stessi, crittando usando l valore del prodotto di 2 numeri primi, per trovarlo devi per forza conoscere quei 2 numeri.
+quindi fare brute forcing e estremamente difficile.
 
 
 

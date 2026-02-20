@@ -16,10 +16,31 @@
 \maketitle
 
 \section{secondo semestre}
-
+\section{ambiente e scope}
 ling dichiarativi vs imperativi.
 
+ambiente diviso in3 tipi:
+\begin{itemize}
+\item ambiente locale: creato all'inizio di un blocco
+\item ambiente globale: aambiente relativo all'associazione etichetta:valore comuune  a tutti i blocchi
+\item ambiente non locale: associazione ereditata da specifici blocchi(es: un blocco interno ad un altro blocco)
+\end{itemize}
 
+
+ci sono diverse operazioni che si possono fare sull'ambiente, 2 molto importanti sono: \textbf{disattivazione dell'ambiente} e  \textbf{riattivazione dell'ambiente}
+
+la disattivazione annulla il legame nome-oggetto, la riattivazione (?)lo fa uscire dal blocco
+
+scope statico vs dinamico:
+
+statico le associazioni sono note al tempo della compilazione, piu complesso da implementare ma piu efficente
+
+dinamico: informazione derivata dalll'esecuzione, programma piu leggibile e semplice da implementare ma meno efficente.
+
+
+\section{gestione della memoria}
+
+studiamo gestiione di memoria a linguagi per il fatto che bisogna allocare memoriia durante l'esecuzione dei programmi.
 
 
 
