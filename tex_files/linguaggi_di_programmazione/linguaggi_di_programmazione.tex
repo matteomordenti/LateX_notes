@@ -399,7 +399,61 @@ vedi  pag 65(82)
 \subsection{minimizzare un DFA}
 
 
+\section{(secondo semestre) ambiente e scope}
 
+nome= sequenza di caratteri usata per denotare qualcos'altro.
+
+un oggetto e denotabile quando gli puo essere associato un nome
+
+binding o legame: associazione tra nome e oggetto
+
+il tempo di binding puo essere statico o dinamico
+
+Ambiente:
+insieme delle associazioni fra nomi e oggetti denotabili
+esistenti a run-time in uno specifico punto del programma ed
+in uno specifico momento dell’esecuzione
+
+Dichiarazione:
+meccanismo (implicito o esplicito) col quale si crea
+un’associazione in ambiente
+
+\underline{lo stesso nome puo denotare oggetti distinti in punti diversi del programma}
+
+\textbf{aliasing}: nomi diversi denotano lo stesso oggetto.
+
+nei linguaggi moderni l'ambiente è strutturato in blocchi.
+
+ambiente diviso in3 tipi:
+\begin{itemize}
+\item ambiente locale: creato all'inizio di un blocco
+\item ambiente globale: aambiente relativo all'associazione etichetta:valore comuune  a tutti i blocchi
+\item ambiente non locale: associazione ereditata da specifici blocchi(es: un blocco interno ad un altro blocco)
+\end{itemize}
+
+ci sono diverse operazioni che si possono fare sull'ambiente, 2 molto importanti sono: \textbf{disattivazione dell'ambiente} e  \textbf{riattivazione dell'ambiente}
+
+fine del legame non necesssariamente coincide con la fine dell'oggetto.
+
+la disattivazione annulla il legame nome-oggetto,un nome smette temporaneamente di riferirsi al suo oggetto
+perché è stato mascherato (shadowing) da una nuova dichiarazione.
+ la riattivazione fa in modo che il vecchio legame torna visibile
+quando esci dal blocco che lo mascherava
+
+Una dichiarazione locale ad un blocco è visibile in quel
+blocco e in tutti i blocchi in esso annidati, a meno che non
+intervenga in tali blocchi una nuova dichiarazione dello
+stesso nome
+
+scope statico vs dinamico:
+
+statico le associazioni sono note al tempo della compilazione, piu complesso da implementare ma piu efficente
+
+dinamico: informazione derivata dalll'esecuzione, programma piu leggibile e semplice da implementare ma meno efficente.
+
+\section{gestione della memoria}
+
+studiamo gestiione di memoria a linguagi per il fatto che bisogna allocare memoriia durante l'esecuzione dei programmi.
 
 
 
