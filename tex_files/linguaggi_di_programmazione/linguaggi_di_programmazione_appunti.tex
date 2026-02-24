@@ -42,9 +42,32 @@ dinamico: informazione derivata dalll'esecuzione, programma piu leggibile e semp
 
 studiamo gestiione di memoria a linguagi per il fatto che bisogna allocare memoriia durante l'esecuzione dei programmi.
 
+\textbf{allocazione statica della memoria}: un oggetto ha indirizzo assoluto che mantiene per tutta la durata del programma. allocazione statica non ammettte ricorsione.
+
+\textbf{allocazione dinamica}: a run time possono esistere piu istanze della stessa variabile locale.
+
+ogni istanza ha \underline{record di attivazione}
+
+poi esiste la pila per gestire i record di attivazione
+
+slide 12: puntatore di catena dinamica: serve a collegare con il prossimo recoord
+
+indirizzo del risultato, dove scrivere il risultato.
+
+a volte puo servire gestione dinamica della memoria, ma quella con la pila non basta.
+
+2 problemi principali nella gestione dell'heap:
+
+velocità di accesso in tempi non abbastanza veloci
+
+gestione delle varie dimensioni dei blocchi.\\
+
+esiste sia la frammentazione interna che esterna.
 
 
+nel record di attivazione c'è anche il link statico, che in ogni momento punta al record di attivazione del blocco che contiene il testo del blocco di esecuzione.
 
+quando ci sono procedure annidate, il link statico e invocato attraverso il puntatore di catena statico del chiamante.
 
 
 
