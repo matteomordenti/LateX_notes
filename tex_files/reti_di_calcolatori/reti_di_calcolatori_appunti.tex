@@ -46,6 +46,8 @@ ora anche questo non è piu molto usato perche è nato un nuovo standard, il AES
 
 \textbf{cifratura a chiave pubblica}: ha chiave non simmetrica, ognuno ha 2 numeri primi comme chiavi, una solo e privata(segreta), l'altra e pubblica. per decifrare devi fare prodotto ddi due chiavi e messaggio.
 
+chiave piu usata al mondo al momento
+
 debolezza nel fatto che in teoria se il messaggio è troppo ridotto diventa facile decrittarlo.
 
 la chiave privata è fortissima, la debolezza e il messaggio.
@@ -75,6 +77,40 @@ un paio di funzioni di hash piu usate:
 MD5(or RFC 1321): 128 bit di bit digest
 
 SHA-I: produce 160(numero molto inusuale) bit di digest
+
+\subsection{firma digitale}
+
+puo significare semplicemente crittare un messaggio con chiave privata ma certificarla attraverrso \textbf{certification authority} istituzioni che danno una conferma di autenticita da una terza parte usando un certificato di autenticita con il nome dell'authority, una chiave èubblica e un messaggio Hash, se ne usano migliaia alla volta.
+
+spesso per ridurre il peso del messaggio, visto che la ciffratura richiede potenza, il messsaggio viene "frullato" attraverso Hash, diventa cosi una "message digest" o "fingerprint".
+
+
+\subsection{email sicure}
+
+c'e un metodo piu efficace di ogni altro per rendere sicura la mail. è quello delle slide.
+
+praticamente il ricevente riceve due hash e li confronta per confermare siano uguali. il mandante ne cripta uno con la sua chiave, li concetena e poi li cripta tuttie e due dentro K(s) con la pubblica del ricevente chiesta alla certification authority e manda il tutto.
+
+\subsection{SSL}
+
+socket: coppia indirizzo numero di rete, il punto in cui entrano e partono dati
+
+SSL protocollo per la protezione delle socket
+
+SSL fornisce: confidenzialita, integrita e autenticazione.
+
+è a meta tra il livello applicazione e livello trasporto.
+
+è  praticamente una connessione criptata tra client e server
+
+\subsection{VPN}
+
+
+
+
+
+
+
 
 
 
