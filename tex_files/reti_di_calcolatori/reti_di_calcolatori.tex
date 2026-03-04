@@ -75,6 +75,83 @@ quindi fare brute forcing e estremamente difficile.
 
 \subsection{autenticazione}
 
+bisogna rendere sicura annche l'autenticazione perchè altrimenti trudy puo fingersi qualcun altro e ottenre altre informazini.
+
+\textbf{playback attack}: l'attaccante si finge qualcun'altro intercettando A e mandando a B il messaggio intercettato.
+
+un modo per eseguire l'autenticazione prima di cominciare la vera e propria comunicazione e che B mandi ad A un nonce(numero a uso singolo) e che B lo cifri con la sua chiave segreta. questo si chiama AP 4.0 e vale solo con chiavi simmetriche
+
+AP5.0 vale anche con chiavi asimmetriche
+
+\subsection{firme digitali}
+
+una semplice forma di firma e semplicemente crittare con chiave privata
+
+questo pero crea messaggi piuttosto lunghi, quindi viene applicata la funzione hash al messaggio per craere un "messagge digest" di lunghezza fissa e poi lo cripta con la chiave
+
+\textbf{funzione di hashing}: una funzione  e di hashing quando per ogni elemento in un insieme, la destinazione in un altro insieme è casuale.
+
+un paio di funzioni di hash piu usate:
+MD5(or RFC 1321): 128 bit di bit digest
+
+SHA-I: produce 160(numero molto inusuale) bit di digest
+
+a questo punto un intruso puo ancora usare una sua chiave pubblica ma dire che e di qualcun altro
+
+entrano quindi in campo le \textbf{certification authority}: enti esterni che associano certe chiavi pubbliche a un individuo, certificandolo.
+
+
+per quanto riguarda il \textbf{secure e-mail}  si crea una nuova chiave simmetrica, poi sender manda due messaggi, uno il messaggio crittato con chiave simmetrica, la'altro, la chiave simmetrica stessa crittata con la chiave pubblica del receiver. poi manda anche la propria firma digitale come proa di autenticazione.
+
+\subsection{SSL}
+
+SSl o secure socket layer è un protocollo di sicurezza ampiamente usato.
+
+provvede confidenzialità, integrità e autenticazione
+
+è a meta tra il livello applicazione e livello trasporto.
+
+è  praticamente una connessione criptata tra client e server, infatti il SSL protegge le socket che sono i punti da cui i dati escono ed entrano.
+
+SSL è divisa in 4 parti
+\begin{enumerate}
+    \item handshake sender e receiver usano i loro certificati e chiavi private per autenticarsi e scambiarsi il \underline{shared secret}
+    \item key derivation: sender e receiver usano il shared secret per derivare un gruppo di chiavi
+    \item data transfer: i dati da trasferire sono divisi in serie di records
+    \item connection closure: messaggio speciale per chiudere la connessione in sicurezza
+
+\end{enumerate}
+
+è considerato non sicuro usare una chiave per piu di una operazione  di cifratura, per cui la key derivation crea 4 chiavi
+\begin{itemize}
+\item Kc per dati da client a server
+\item Mc  chiave MAC per dati da client a server
+\item Ks per dati da server a client
+\item Ms chiave MAC da server a client
+\end{itemize}
+
+step di handshake:
+
+1. client sends list of algorithms it supports, along with
+client nonce
+2. server chooses algorithms from list; sends back:
+choice + certificate + server nonce
+3. client verifies certificate, extracts server’s public
+key, generates pre master secret, encrypts with
+server’s public key, sends to server
+4. client and server independently compute encryption
+and MAC keys from pre master secret and nonces
+5. client sends a MAC of all the handshake messages
+6. server sends a MAC of all the handshake messages
+
+
+
+
+
+
+
+
+
 
 
 
