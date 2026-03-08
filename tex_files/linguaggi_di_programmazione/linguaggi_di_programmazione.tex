@@ -455,7 +455,46 @@ dinamico: informazione derivata dalll'esecuzione, programma piu leggibile e semp
 
 studiamo gestiione di memoria a linguagi per il fatto che bisogna allocare memoriia durante l'esecuzione dei programmi.
 
+esistono diversi tipi di allocazione della memoria, ci sono due politiche principali:
 
+\begin{itemize}
+\item allocazione statica: la memoria viene allocata al tempo della compilazione. un oggetto ha un indirizzo assoluto che viene mantenuto per tutta l'esecuzione del programma, non supporta ricorsione.
+\item allocazione dinamica: la memoria viene allocata al tempo dell'esecuzione 
+\end{itemize} 
+allocazione con stack: oggetti allocati con politica LIFO
+ allocaione in heap: oggetti allocati e deallocati in qulasiai momento
+
+
+
+ricorsione con allocazione statica creerebbe troppe istanze della della stessa varibile  locale
+
+con allocazione diinamica, ogni istanza di un sottoprogramma è gestita attraverso il suo \underline{record di attivazione} gestiti grrazie a una pila.
+
+ogni blocco ha un suo record di attivazione
+
+la gestione della pila è gestita attraverso 
+\begin{itemize}
+\item sequenza di chiamata: codice del chiamante prima della chiamata
+\item prologo: codice eseguito all'inizio del blocco
+\item epilogo: codice eseguito alla fine
+\item sequenza di ritorno codice eseguito dal chimante subito dopo la chiamata
+\end{itemize}
+
+i vari RDA(record di attiavzione) sono collegati con un puntatore dinamico, visto che gli rda sono di dimensione diversa gli uni dagli altri e la dmensione dei dati al loro interno pou variare a runtime.\\
+
+l'allocazione dinamica puo avvenire anche con heap oltre che con stack
+
+\textbf{heap}: all'interno dell'heap i blocchi di memoria possono essere allocati e deallocati in momenti arbitrari
+
+l'heap e diviso in blochi di dimensione fissa, e in rigine sono tutti collegati in una lista libera.
+
+avviene frammentazione  e serve un'attenta gestione della memoria
+
+la lista libera inizialmente occupa un solo blocco della dimesione dell'heap
+
+quando il blocco e deallocato, viene restituito alla lista libera.
+
+ad ogni richiesta di allocazione si cerca un blocco di dimensione opportuna, lo si puo cercare con \underline{first fit}(il primo che trova di dimensione minima) o \underline{best fit}: il piu piccolo di dimensione minima.
 
 
 
