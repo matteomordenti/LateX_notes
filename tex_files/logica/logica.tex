@@ -1,0 +1,157 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb} % Math packages
+\usepackage{geometry}
+\usepackage{hyperref} % Clickable links
+\usepackage{graphicx} % Images
+
+\geometry{a4paper, margin=1in}
+
+\title{logica}
+\author{Matteo}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{deduzione naturale}
+
+una regola senza premesse si dice assioma
+
+due tipi di passi di interferenza
+\begin{itemize}
+\item regole di introduzione di un connettivo, modi in cui concludere direttamente una formula
+\item regole di eliminazione, modi in cui utilizzare direttamente un'ipotesi
+\end{itemize}
+
+ogni passo di inferenza puo essere letto sia top-down(dalla conclusione alle premesse) che bottom-up(dalle premesse alla conclusione)
+
+una regolsa e invertibile quando dimostra anche ogni premessa
+
+è consigliabile dimostrare con metodo top-down, stando attenti a usare regole invertibili o usando regole non invertibili e acertandosi che la conclusione sia ancora dimostrabile.
+
+\textbf{and introduzione}:
+bottom-up: se F1 e F2 allora F1 and F2
+top-down: per dimostrare F1 and F2 devo dimostrare sia  F1 che F2
+
+\textbf{and elimininazione}:
+
+bottom-up: se F1 and F2 e se ipotizzando F1 e F2 concludo F3 allora F3
+
+top-down: per dimostrare F3 data l'ipotesi F1 and F2 è sufficente dimostrare F3 sotto le ipotesi f1 e F2
+
+\textbf{or introduzione}
+
+bottom-up: se F1 o F2 vale allora vale anche F1 or F2
+
+top-down: per dimostrare F1 or F2 è sufficente dimostrare F1 o F2
+
+\textbf{or eliminazione}
+bottom-up: se vale F1 or F2 e F3 vale sia quando vale F1 che quando vale F2 , allora f3 vale.
+
+top-down: per dimostrare qualunque cosa sapendo F1 or F2, è sufficente procedere per casi, dimosttrando la stessa cosa assumendo prima che f1 valga e poi che valga F2.
+
+\textbf{bottom introduzione}: NESSUNA
+
+\textbf{bottom eliminazione}: 
+bottom up: dal falso segue qualunque cosa
+
+top-down: per dimostrare qualunque cosa posso ridurmi a dimostrare un assurdo.
+
+\textbf{=> introduzione}:
+bottom-up: se ipotizzando F1 dimostro F2 allora F1=>F2
+
+top-down:  per dimostrare F1 =>F2 basta assumere F1 e dimostrare F2
+
+\textbf{=> eliminazione}:
+bottom-up: se F1 e F1=>F2 allora necessariamente F2
+
+top-down: per dimostrare F2 devo trovare un F1 che valga e tale per cui F1=>F2
+
+\textbf{negazione introduzione}: 
+bottom-up: se ipotizzando F1 dimostro l'assurdo allora non f1
+
+top-down: per dimostrare non F1 basta assumere F1 e dimostrare l'assurdo.
+
+\textbf{negazione introduzione}: 
+bottom-up: è assurdo avere sia non F1 che f1
+
+top-down: per dimostrare l'assurdo basta dimostrare qualcosa e il suo contrario.
+
+quando ci si trova a dimostrare bottom, da quel momento tutte le regole sono invertibili.
+
+\textbf{ ragionamento per assurdo}: 
+bottom-up: assumiamo per assurdo non F.... assurdo! quindi F
+
+top-down: per dimostrare F procediamo per assurdo assumendo non F e dimostrando bottom.
+
+\section{semantica classica}
+
+\textbf{connotazione}: una parte di frase sintatticamente corretta alla quale attribuire un significato
+
+\textbf{denotazione }: il significato attribuito a una connotazione, preso da un dominio di interpretazione.
+
+\textbf{dominio di interpretazione}: insieme di possibili significati
+
+\textbf{sintassi}: descrizione dell'insieme di tutte le connotazioni
+
+\textbf{funzione semantica}: funzione che associa a ogni connotazione una denotazione in un dominio di interpretazione fissato..
+
+
+grande differenza tra semantica classica e intuizionistica:
+classica permette di usare RAA e terzo escluso, concludenedo un'ipotesi dimostrando l'assurdo della negazione.
+intuizionistica non permette di usare queste due tecniche, permette solo di dimostrare la negazione di non A a partire da A e dimostrando bottom usando non introduzione.
+
+lo stesso esercizio puo essere svolto con semantica classica o intuizionistica.
+
+tutto questo perchè la semantica classica ha come fondamento che se A non e vero allora non a, l'intuizionistica no.
+
+\section{primo ordine}
+
+la \textbf{logica proposizionale}: è quella logica le cui connotazioni possono denotare valori di  verità.
+
+la \textbf{logica del prim''ordine} ha \textbf{formule}: connotazioni che denotano valori di verità
+
+e \textbf{termini}: connotazioni che denotano elementi del dominio del discorso A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
