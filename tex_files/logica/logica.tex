@@ -127,28 +127,55 @@ alfa-convertibilità = cambiare nome alle variabili legate
 
 puoi cambiare il nome di una varibile legata senza problemi ma non una variabile libera
 
+\section{deduzione naturale del prim'ordine}
+
+\textbf{$\forall$ introduzione}:
+se dimostro P per un elemento completamente arbitrario(y, che deve essere nuovo e non usato nell'ipotesi), allora P vale per tutti gli elementi
+
+Lettura bottom-up: se P vale per una y qualunque, allora per
+ogni x vale P
+
+Lettura top-down: per dimostrare $\forall$x.P è sufficiente scegliere
+una y sulla quale non sappiamo nulla e poi dimostrare P[y/x].
+sia A che B. Ovviamente è sufficiente scegliere una y ancora
+mai usata.
+
+\textbf{$\forall$ eliminazione}:
+se vaale per tutti allora vale per un caso specifico
+
+Lettura bottom-up: Lettura bottom-up: se P vale per tutti gli x, allora vale in
+particolare per t.
+
+Lettura top-down:per dimostrare P[t/x] è sufficiente
+dimostrare il teorema generalizzato $\forall$x.P.
 
 
+\textbf{$\exists$ introduzione}:
+se vale per un caso, allora esiste qualcuno per cui vale
+
+è fortemente non invertibile
+
+Lettura bottom-up: se P vale per t allora esiste un x per cui P
+vale.
+
+Lettura top-down: per dimostrare $\exists$x.P bisogna scegliere un t
+per il quale P[t/x] valga e dimostrarlo
+
+\textbf{$\exists$ eliminazione}:
+“Prendo un elemento qualunque che soddisfa P (senza sapere chi è), e vedo cosa posso dedurre”
+
+parzialmente invertibile
+
+Lettura bottom-up: se $\exists$x.P e se dimostro C sotto l’ipotesi che
+P valga per un generico y, allora C vale.
+
+Lettura top-down: per dimostrare un qualche C sotto l’ipotesi
+$\exists$x.P è sufficiente dimostrare C assumendo P per una qualche
+variabile generica y.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+quando devi dimostrare un ipotesi, puoi trovarti a dover usare induzione(ricorsione).
+cio consiste nel assumere un ipotesi induttiva, e usarla per dimostrare tutti i casi.
 
 
 
