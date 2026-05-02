@@ -32,25 +32,26 @@ una regolsa e invertibile quando dimostra anche ogni premessa
 è consigliabile dimostrare con metodo top-down, stando attenti a usare regole invertibili o usando regole non invertibili e acertandosi che la conclusione sia ancora dimostrabile.
 
 \textbf{and introduzione}:
-bottom-up: se F1 e F2 allora F1 and F2
-top-down: per dimostrare F1 and F2 devo dimostrare sia  F1 che F2
+bottom-up: se F1 e F2 allora F1 and F2                                  F1  F2
+top-down: per dimostrare F1 and F2 devo dimostrare sia  F1 che F2       ----------
+                                                                         F1 and F2  
 
 \textbf{and elimininazione}:
-
-bottom-up: se F1 and F2 e se ipotizzando F1 e F2 concludo F3 allora F3
-
-top-down: per dimostrare F3 data l'ipotesi F1 and F2 è sufficente dimostrare F3 sotto le ipotesi f1 e F2
+                                                                                                                           [F1][F2]
+bottom-up: se F1 and F2 e se ipotizzando F1 e F2 concludo F3 allora F3                                        F1 and F2    F3
+                                                                                                              ----------         
+top-down: per dimostrare F3 data l'ipotesi F1 and F2 è sufficente dimostrare F3 sotto le ipotesi f1 e F2         F3
 
 \textbf{or introduzione}
 
-bottom-up: se F1 o F2 vale allora vale anche F1 or F2
+bottom-up: se F1 o F2 vale allora vale anche F1 or F2                 F1/2
+                                                                      -----
+top-down: per dimostrare F1 or F2 è sufficente dimostrare F1 o F2      F1 or F2
 
-top-down: per dimostrare F1 or F2 è sufficente dimostrare F1 o F2
-
-\textbf{or eliminazione}
-bottom-up: se vale F1 or F2 e F3 vale sia quando vale F1 che quando vale F2 , allora f3 vale.
-
-top-down: per dimostrare qualunque cosa sapendo F1 or F2, è sufficente procedere per casi, dimosttrando la stessa cosa assumendo prima che f1 valga e poi che valga F2.
+\textbf{or eliminazione}                                                                                                                                                                     [F1/2]
+bottom-up: se vale F1 or F2 e F3 vale sia quando vale F1 che quando vale F2 , allora f3 vale.                                                                                    F1 or F2    f3   
+                                                                                                                                                                                -----------------
+top-down: per dimostrare qualunque cosa sapendo F1 or F2, è sufficente procedere per casi, dimosttrando la stessa cosa assumendo prima che f1 valga e poi che valga F2.           F3
 
 \textbf{bottom introduzione}: NESSUNA
 
@@ -59,33 +60,33 @@ bottom up: dal falso segue qualunque cosa
 
 top-down: per dimostrare qualunque cosa posso ridurmi a dimostrare un assurdo.
 
-\textbf{=> introduzione}:
-bottom-up: se ipotizzando F1 dimostro F2 allora F1=>F2
-
-top-down:  per dimostrare F1 =>F2 basta assumere F1 e dimostrare F2
+\textbf{=> introduzione}:                                                 [F2]
+bottom-up: se ipotizzando F1 dimostro F2 allora F1=>F2                   F1 
+                                                                        ------
+top-down:  per dimostrare F1 =>F2 basta assumere F1 e dimostrare F2      F1=>F2
 
 \textbf{=> eliminazione}:
-bottom-up: se F1 e F1=>F2 allora necessariamente F2
+bottom-up: se F1 e F1=>F2 allora necessariamente F2                                   F1=>F2   f1
+                                                                                      -----------         
+top-down: per dimostrare F2 devo trovare un F1 che valga e tale per cui F1=>F2         F2
 
-top-down: per dimostrare F2 devo trovare un F1 che valga e tale per cui F1=>F2
+\textbf{negazione introduzione}:                                                   [F1]
+bottom-up: se ipotizzando F1 dimostro l'assurdo allora non f1                   bottom
+                                                                                 -------
+top-down: per dimostrare non F1 basta assumere F1 e dimostrare l'assurdo.         non F1
 
-\textbf{negazione introduzione}: 
-bottom-up: se ipotizzando F1 dimostro l'assurdo allora non f1
-
-top-down: per dimostrare non F1 basta assumere F1 e dimostrare l'assurdo.
-
-\textbf{negazione introduzione}: 
-bottom-up: è assurdo avere sia non F1 che f1
-
-top-down: per dimostrare l'assurdo basta dimostrare qualcosa e il suo contrario.
+\textbf{negazione eliminazione}: 
+bottom-up: è assurdo avere sia non F1 che f1                                           F1   non f1                      
+                                                                                     -------------
+top-down: per dimostrare l'assurdo basta dimostrare qualcosa e il suo contrario.           bottom
 
 quando ci si trova a dimostrare bottom, da quel momento tutte le regole sono invertibili.
 
 \textbf{ ragionamento per assurdo}: 
-bottom-up: assumiamo per assurdo non F.... assurdo! quindi F
-
-top-down: per dimostrare F procediamo per assurdo assumendo non F e dimostrando bottom.
-
+bottom-up: assumiamo per assurdo non F.... assurdo! quindi F                                   [nonF]
+                                                                                                bottom
+top-down: per dimostrare F procediamo per assurdo assumendo non F e dimostrando bottom.          --------
+                                                                                                  F
 \section{semantica classica}
 
 \textbf{connotazione}: una parte di frase sintatticamente corretta alla quale attribuire un significato
