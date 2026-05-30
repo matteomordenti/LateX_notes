@@ -16,6 +16,302 @@
 
 \maketitle
 \section{intro}
+
+\textbf{reti di calcolatori}: un insieme di dispositivi di calcolo, autonomi o interconnessi.
+
+Una rete di calcolatori è un insieme di dispositivi autonomi, cioè in grado di eseguire e svolgere autonomamente i compiti
+programmati di calcolo e di comunicazione, interconnessi tra loro da supporti fisici alla trasmissione di segnali.
+i televisori e le reti telefoniche ad esempio non sono reti di calcolatori dato che non sono autonomi
+
+Le reti di calcolatori si possono classificare in base alla dimensione geografica:
+\begin{itemize}
+\item Reti personali (Personal Area Network), PAN
+ Connessione tra dispositivi in una stanza, o di una scrivania
+\item Reti locali (Local Area Network), LAN
+ Connessione dispositivi di un ufficio, un laboratorio, un edificio, un campus
+\item Reti metropolitane (Metropolitan Area Network), MAN
+Connessione di aree urbane, reti civiche
+\item Reti geografiche (Wide Area Network), WAN
+ Connessione di aree molto ampie, reti nazionali e internazionali
+\item Internet: è la rete globale composta dall’unione di reti di vari tipi, connesse tra loro e conformi a un
+determinato insieme di regole di comunicazione comuni (i protocolli di Internet).
+\end{itemize}
+
+lo sviluppo delle reti di calcolatori che ha permesso la nascita di internet non sarebbe stata possibile senza una 
+distribuzione dei costi delle infrastrutture, che e avvenuta in modo organico per rispondere a esigenze crescenti degli utenti.
+
+due grandi aspetti di interesse degli utenti sono \textbf{capacita di trasmissione}, misurati in byte(kilo,mega giga tera) e \textbf{ritardo del collegamento}(ad esempio jitter,la variazione della latenza intorno al val medio)
+
+il ritado del collegamento indica il tempo effettivoo per transitare dal mittente al destinatario finale sulla rete, il ritardo puo essere dovuto a distanza fisica o a tempo impiegato a gestire i protocolli di rete.
+
+la connessione di un calcolatore a una rete richiede un minimo di componenti:
+\begin{itemize}
+\item dispositivi o schede di rete: sono dispositivi hardware per codificare, trasmettere, ricevere e decodificare
+dati dal calcolatore alla rete, e viceversa
+, amministrati da componenti software del sistema operativo
+\item mezzo di trasmissione: supporto fisico alla propagazione e trasmissione di segnali: es. cavi elettrici,
+fibre ottiche. Esso realizza l’infrastruttura fisica di rete.
+\item connettore di rete: interfaccia o connettore standard per il collegamento del dispositivo di rete al mezzo
+di trasmissione della rete
+\item protocolli di rete: insieme di regole implementate sotto forma di software del calcolatore, univocamente
+definite per garantire compatibilità, e corretta gestione della comunicazione
+\end{itemize}
+
+\textbf{collegamento di rete}: mezzo di trasmissione fisico condiviso tra calcolatori in rete
+
+\textbf{infrastruttura di rete}: struttura di connessione dei collegamenti di rete, puo essere:
+\begin{itemize}
+\item punto a punto(2 calcolatori)
+\item connessioni completamente connesse o cammini ridondanti(ogni calcolatore econnesso a ogni altro)
+\item connessioni parzialmente connesse(ogni calcolatore e connesso a un altro solo, ma la rete li prende tutti)
+\item coonessioni a partizioni di rete (uno o piu gruppi e separato dagli altri)
+\end{itemize}
+
+nelle connessioni completamente connesse quel numero di connessioni e anche eccessivo, ma e mollto resistente ai rischi.
+nelle connessioni parzialmente connesse invece ce il miglior rapporto costo efficacio ma un solo guasto comprometterebbe l'intera rete.
+
+
+Le infrastrutture di rete possono assumere vari schemi di connessione dei dispositivi \textbf{topologia}
+
+varii tipi di topologie
+\begin{itemize}
+\item a cerchio, ogni calc  e connesso solo al precedente e successivo, i dati partono in 1 senso e tornano nell'altro
+\item a stella, ogni elemento periferico e connesso bidirezionalmente a un unico calcolatore centrale. l'elemento centrale e detto "single point failure"
+\item a bus, ogni elemento ha una connessione con il bus centrale
+\item ad albero, abbiamo elementi padri che si connettono ad elementi figli in uno schema ad albero.
+\end{itemize}
+
+nel bus ce il problema di coordinare chi puo usare il bus in che momento per evitare sovrapposizioni di seganle.
+
+man mano che le infrastrutture si fanno piu complesse questi schemi diventano sempre meno applicabili.
+
+per capirsi tra calcolatori con codifica non return zero(la piu semplice) era necessario essere perfettamnete simcronizzati coi clock cosi fu inventata la codifica manchester
+
+queste codifiche leggono ilsegnale elettrico come 1 e l’assenza come 0 
+
+la manchester riallinea se i clock si desincronizzano
+
+vecchi computer usavano la manchester ora non e piu un problema
+
+
+i \textbf{mezzi di trasmissione} possono essere principalmente di 3 tipi:
+\begin{itemize}
+\item cavetti o fili metallici, come i doppini intrecciati
+\item fibra ottica, trasmissione segnali luminosi vincolati entro fibre di vetro
+\item connessioni wireless,  radiazioni elettromagnetiche nello spazio, non sempre affidabili
+\end{itemize}
+
+
+\textbf{dispositivo o scheda di rete}:
+dotato di interfaccia di collegamento al calcolatore e connettore di rete
+
+codifica e decodifica dati in ricezione e trasmissione
+
+esistono schede di rete diverse per mezzi fisici diversi(cablati,fibra,wifi)
+
+Prende il nome dai protocolli o dallo standard utilizzato per la trasmissione
+
+ognuno ha un codice identificativo unico \textbf{indirizzo MAC}(medium access control)
+
+
+canale di comunicazione della rete: una visione astratta del mezzo di trasmissione
+
+puo essere da punto a punto
+
+o un canale ad accesso multiplo(broadcast):
+tutti i dispositivi ricevono sullo stesso canale. e richiesto arbitragiio per evitare collisioni.
+e richiesto anche indirizzamento Indirizzi univoci per mittente e destinatario (o destinatari) del dato trasmesso e indirizzo MAC della scheda di rete.
+
+
+Una serie di canali in cascata può realizzare un servizio di trasferimento dell’informazione tra due dispositivi
+anche molto distanti, secondo due modalità principali: \textbf{commutazione di circuito} (o circuito riservato) e
+\textbf{commutazione di pacchetto.}
+Commutazione di circuito: ad esempio, linea telefonica Viene riservato un circuito di canali di comunicazione punto a punto su ogni connessione lungo
+tutto il cammino dal mittente al destinatario
+
+Il circuito riservato ha un ritardo di comunicazione basso
+
+Si paga il tempo di connessione, anche se non si scambiano dati sul canale
+
+Basso utilizzo delle risorse di rete (canale sprecato quando non si trasmette)
+
+dopo averlo fatto la prima volta non ce bisogno di dichiarare periodicamente mittente e destinatario
+\\
+commutazione di pacchetto: molto usata su internet e canali broadcast.
+
+i dati vengono divisi in pacchetti indipendenti con sopra indirizzi di destinatario e mittente
+
+poi ogni pacchetto viene spedito separatamente
+
+diversi flussi di pacchetti condividono il canale, utilizzandolo al massimo. i nodi ricevitori devono di volta in volta
+farsi carico di verificare se il pacchetto sia giunto a destinazione o, in caso contrario, possono provvedere all’inoltro del
+pacchetto ricevuto sul successivo canale broadcast.
+
+richiede quindi meno risorse ma ha un ritardo della rete di comunicazione.
+
+inoltre  si paga in base alla quantita di dati trasmessi.
+
+\subsection{funzionamento della commutazione a pacchetti}
+
+nella commutazione a pacchetti a ogni nodo il pacchetto viene inoltrato verso il destinatario finale e possibile la perdita o arrivo disordinato dei pacchetti.
+
+esistono sia: \textbf{servizi orientati alla connessione} che fanno in modo i pacchetti arrivino sempre in ordine e garantiscono la ritrasmissione di pacchetti perduti
+che \textbf{servizi non orientati alla connessione} in cui invece i pacchetti possono seguire strade diverse e arrivare tardi o non arrivare mai.
+
+definizione \textbf{protocollo}:Regole e procedure (semantiche) di gestione dei processi di comunicazione
+ Regole e formati (sintattici) per definire scambio di messaggi non ambigui
+ permettono compatibilità dei dispositivi e dei sistemi conformi allo stesso standard
+
+ definizione \textbf{architettura dei protocolli di rete}:
+ ogni livello risolve uno dei problemi della comunicazione.
+ i livelli superiori effettuano richieste di servizio ai livelli inferiori.
+i livelli inferiori forniscono servizi ai livelli superiori.
+Le richieste e i servizi realizzano l’interfaccia del protocollo verso altri livelli.
+ogni livello comunica solo con il livello superiore e inferiore.
+
+c'è un modello standard per definire l'architettura dei protocolli di rete, si chiama \textbf{Standard ISO/OSI RM} (Open System Interconnection Reference Model):
+
+\begin{enumerate}
+\item[7.] livello applicazione, primitiv dati applicazione
+\item[6.] livello presentazione, traduzione formati dati utente
+\item[5.] livello sessione, stato del collegamento
+\item[4.] livello trasporto, connessione affidabile e controllo congestione
+\item[3.] livello rete, frammentazione, indirizzamento, instradamento pacchetti
+\item[2.] livello mac/llc, accesso al medium controllo errore
+\item[1.] livello fisico, codifica trasmisssione ricezione
+\end{enumerate}
+
+Il livello applicazione fornisce i servizi di trasmissione dati alle applicazioni in esecuzione e l permette di comunicare.
+
+il livello presentazione risolve eventuali eterogeneità dei dati tra i nodi della rete.
+
+il livello sessione mantiene lo stato del collegamento. 
+
+il livello trasporto fornisce un servizio di connessione affidabile e controllo della
+congestione. 
+
+il livello rete si occupa di frammentazione dei dati, indirizzamento e instradamento dei
+pacchetti. 
+
+il livello LLC/MAC si occupa di garantire una comunicazione affidabile e l’arbitraggio di accesso
+al mezzo trasmissivo. 
+
+il livello fisico si occupa di codificare i dati e trasmetterli sul medium di
+trasmissione.
+
+
+L’architettura dei livelli di protocolli di Internet utilizza solo 5 dei 7 livelli ISO/OSI RM, il livello presentazione e il livello sessione sono saltati.
+
+livello sessione si preoccupa se il pacchetto e arrivato corretttamnente e gestisce il ritmo di invio dei pacchetti cioe se inviarli a mitraglia o aspettare tra uno e l’altro
+
+livello sessione e presentazione sono oggi obsoleti: livello sessione mntiene stato collegamneton tra mittente e destinatario, se una sessione si interrompe ti fa ripartire da dove eri rimasto, senza il livello trasporto riparte da capo. oggi le connessioni sono talmente veloci che spesso non serve
+
+\underline{in trasmissione}, ogni livello riceve dati dai livelli superiori e li inserisce (incapsula) in “buste” con dati
+aggiuntivi, utili ad istruire il corrispondente livello del dispositivo ricevente
+
+\underline{in ricezione} ogni livello verifica i dati della busta, agisce di conseguenza, e passa il contenuto della busta
+ai livelli superiori
+
+Il livello trasporto imbusta i dati aggiungendo informazioni utili all’ordinamento e controllo della
+velocità di invio delle buste
+
+Il livello rete frammenta i dati in pacchetti, decide il cammino sul quale inviare il pacchetto a
+seconda dell’indirizzo del destinatario
+
+Il livello MAC/LLC esegue la consegna finale dei dati a dispositivi di una rete locale.
+
+la parte iniziale della busta e detta \underline{header}, quella posteriore \underline{trailer}.
+
+
+Il livello uno (fisico) si occupa delle regole per codificare e trasmettere i dati come segnali sul mezzo trasmissivo a disposizione.
+
+il livello mac deve determinare a quali dispositivi i dati sono destinati qui la rete assume i connotati di una lanciano
+
+Il livello tre (rete) affronta il problema dell’integrazione generalizzata di reti, fino a formare reti di reti,
+organizzate in gerarchie di reti e sottoreti i router si occupano della gestione dell'instradamento e smistano i pacchetti tra le reti, qui il servizio
+di consegna dei pacchetti è \underline{connectionless}(non orientato alla connessione)
+
+Il livello quattro (trasporto) prevede la gestione delle regole che permettano di ripristinare un servizio orientato alla connessione,A questo livello esiste una rete di reti affidabile di tipo orientato alla connessione. Internet è una rete di questo tipo, basata su
+due protocolli in particolare, TCP e IP.
+
+Il livello sette (applicazione) mette semplicemente a disposizione il servizio di comunicazione della rete di reti alle applicazioni
+dell’utente.
+
+\subsection{livello fisico, codifica dei dati digitali}
+
+codifica e decodifica bit a segnali analogici e viceversa, il valore massimo di bit/secondo trasmessi
+è determinata dal tempo necessario alla codifica del valore di ogni bit, poi i segnalli elettromagnetici viaggiano alla velocita della luce.
+
+\subsection{livello mac}
+
+segmento di rete locale: un mezzo di trasmissione condiviso con canale ad accesso multiplo, tutte le schede di rete ricevono le trasmissioni fatte sul mezzo
+
+\underline{il livello mac/llc} si occupa dell'arbitraggio di chi usa il mezzo trasmissivo quando, di indicare a quale scheda di rete e destinato il frame trasmesso,
+e se il frame è destinato a lui aa riceverlo e a passarlo al livello superiore.
+
+il livello mac si occupa anche di assicurarsi che il frame(pacchetto) sia stato ricevuto correttamente, se il destinatario ha ricevuto il pachhetto deve inviare un frame di conferma detto aknowledgement,
+se il mittente non riceve nulla, riinvia il frame finche non riceve la conferma del successo.
+
+
+Tre esempi di protocolli di livello due, che possono essere usati in alternativa tra loro per le schede di rete di
+segmenti di rete locale, sono:
+\begin{itemize}
+\item ethernet, La scheda di rete ascolta il canale e trasmette solo se nessuno sta già trasmettendo
+, Se viene rilevata una collisione la trasmissione è interrotta per riprovare più tardi
+\item IEEE 802.11(wifi) La scheda di rete ascolta il canale e trasmette solo se nessuno sta già trasmettendo
+, si cerca di prevenire le collisioni dilazionando le trasmissioni nel tempo
+\item Token ring
+usata se i dispositivi sono collocati su topologia ad anello cablato  Esiste un frame detto token che viene passato come un “testimone” tra i dispositivi
+ Solo chi detiene il token ha diritto di trasmettere, poi deve passare il token
+\end{itemize}
+
+ci sono diversi dispositivi utili a comporre reti locali.
+\begin{itemize}
+\item ripetitore(repeater): da solo il segnale fisico degrada percorrendo distanza fisica, il ripetitore rigenera e amplifica il segnale
+\item Hub, punto di contatto delle connessioni a stella, semplicemente un ripetitore con tante entrate e uscite
+\item bridge(ponte)  un dispositivo che fa anche da traduttore a livello mac, permette di collegare dispositivi con protocolli mac diversi, I bridge fanno quindi da traduttori dei frame nei formati richiesti dal livello MAC di ogni segmento connesso.
+\item switch(commutatore) come il bridge ma permette di collegare molti segmenti Ha capacità di filtrare e inviare i frame sul segmento giusto, leggendo l’indirizzo MAC del
+destinatario del frame
+\end{itemize}
+
+ripetitore : hub = bridge : switch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{sicurezza}
 
 abbiamo 4 proprieta per la sicurezza:
