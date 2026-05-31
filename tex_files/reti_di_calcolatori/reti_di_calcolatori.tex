@@ -276,6 +276,228 @@ destinatario del frame
 
 ripetitore : hub = bridge : switch
 
+\section{intro 2}
+
+\subsection{livello rete}
+
+Le reti locali sono connesse attraverso collegamenti organizzati in modo gerarchico, basati su
+calcolatori rappresentanti della rete locale (router) a loro volta collegati da linee dati veloci o
+dorsali (backbone).
+
+il terzo livello gestisce l'instradamento dei pacchetti attraverso i router
+
+non solo lan ma si arriva a parlare di reti di reti globali(internet)
+
+\textbf{indirizzamento IP}: indirizzamento globale e gerarchico
+
+\textbf{forwarding}: instradamento del pacchetto verso il destinatario finale
+
+per ora abbiamo servizi di comunicazione di tipo connectionless
+
+i router sono i \underline{dispositivi amministratori} del livello 3
+
+esistono \underline{tabelle di instradamento} che illustrano la tipologia della rete, nascondono dettagli interni delle lan,
+ma vanno aggiornate periodicamente.
+\\
+\subsubsection{indirizzo ip}
+ogni indirizzo ip è associato a una e una sola scheda di rete
+
+l'ip inoltre puo esere statico(sempre uguale ) o dinamico(puo cambiare associazione maac-ip)
+
+indirizzo ip4 bytev4= 4 byte, 4 valori decimale compresi tra 0 e 256
+
+indirizzo ip ccomposto da 2 parti: \textbf{network number}: numero della rete ip a cui appartiene la scheda
+e \textbf{host number}: numero dell'interfaccia di rete all'interno della rete.
+
+il valore dellindirizzo ip determina il valore della rete(A,B,C)
+
+reti di calsse A si riconoscono perche hanno il bit + significativo=0, sono al massimo 126  e ognuno puo avere fino a 16 milioni di host(tutte le combinazioni di bit dei 3 byte - significativi)
+
+le reti di classe B hanno i 2 bit + significativi= 01, sono al massimo 16.382, contengono fino a 64000 hosts(2byte - significativi)
+
+le reti di classe C hanno i 2 bit + significativi= 110, sono al massimo 2 milioni e hanno al massimo 254 hosts
+
+i \underline{numeri di rete} di classe A,B e C sono assegnate ad organizzazioni che ne fanno richiesta da enti internazionali
+
+l'assegnazione dei \underline{numeri di host} poi e fatta dall'amministratore di rete dell'organizzazione ricevente che associa manualmente i MAC agli IP
+
+Assegnazione automatica da parte di un server \textbf{Dynamic Host Configuration Protocol}
+(DHCP): indirizzi IP dinamici.
+è un metodo automatico usato in reti wireless, reti locali e connessioni domestiche
+§ Server DHCP: è un host che implementa il servizio di assegnazione dell’indirizzo
+IP agli host che ne fanno richiesta
+
+
+nel 90 poi è stata creata la definizione di IPV6 visto che gli indirizzi IPV4 sarebbero finiti tra il 2008 e il 2018
+
+Indirizzi IPv6: estesi a 128 bit (16 Byte) anziché i 32 bit (4 Byte) di IPv4
+
+Ci sono casi di integrazione tra IPv4 e IPv6 usando tecniche di tunnelling
+\underline{Tunnelling}: spedire pacchetti IPv6 in buste IPv4.
+
+\subsubsection{routing}
+
+i cammini all'interno delle reti possono cambiare, ad esempio a causa di spostamenti fisici di reti wifi e cambiamenti di accordi tra gestori di reti.
+
+questi cambiamenti rendono sbagliate le tabelle di forwarding dei router.
+entrano quindi in gioco i \underline{protocolli di routing} che scoprono nuovi cammini e aggiornano la tabella.
+
+Esempio di algoritmi di routing su Internet: Routing Information Protocol (RIP), Open
+Shortest Path First (OSPF), Border Gateway protocol (BGP)
+
+\subsubsection{protocollo ICMP}
+
+\underline{internet Control Message Protocol (ICMP)}, protocollo dei messaggi di controllo su Internet
+
+uno standard per definire la comunicazione di informazioni utili alla gestione di Internet
+
+ICMP è usato da host, router e gateway per scambiare informazioni di livello rete, usando
+pacchetti definiti con il protocollo IP
+
+ICMP notifiica di errori nella configurazione e gestione dei cammini, come rete di destinazione non raggiungibile, protocollo errato o host destinazione non raggiungibile
+
+//
+
+ci sono applicazioni basate su ICMP
+
+come applicazione PING: test di verifica di connessione tra due host
+
+applicazione Traceroute: mostra la sequenza di router attraversati da un pacchetto per
+arrivare all'host destinazione
+
+
+
+\subsubsection{protocollo ARP e RARP}
+
+Quando un router riceve un pacchetto destinato a un indirizzo IP della propria sottorete, esso deve
+produrre un frame di livello MAC/LLC che riporti specificato l'indirizzo MAC del destinatari
+
+il protocollo \textbf{ARP} si usa se non si conosce il mac che corrisponde all'indirizzo ip, il router genera un frame spedito a tutti i dispositivi della rete locale dove si chiede:
+quale è l'indirizzo MAC del dispositivo che ha questo indirizzo IP.
+il dispositivo in questione deve rispondere (se esiste) con l'indirizzo mac richiesto.
+
+il protocollo \textbf{RARP} si usa se si conosce il MAC ma non l'indirizzo IP, per il resto funziona allo stesso modo.
+
+
+\subsection{livello trasporto}
+
+
+i 2 grandi protocolli di internet di 4 livello sono \textbf{TCP}(transmission control protocl) e \textbf{UDP}(user data protocol) 
+
+TCP eè un tipo di servizio orientato alla connessione, configura il numero di pporta del socket TCP.
+
+riordina i pacchetti ed elimina i duplicati.
+
+si occupa della conferma di ricezione di livello trasporto.
+
+si occupa della congestione dei flussi di pacchetti
+
+UDP invece e il servizio di trasporto non affidabile, non orientato alla connessione
+
+L’unico aspetto positivo di UDP è la sua estrema semplicità e il fatto che non aggiunge pesanti gestioni all’invio di pacchetti
+
+\subsubsection{TCP}
+
+TCP è il protocollo usato principalmente su internet
+
+lo standard architetturale “de facto” usato su Internet prevede il connubio TCP/IP
+
+TCP consente lo smistamento dei pacchetti verso le rispettive applicazioni in ascolto su
+“porte”
+ TCP richiede attivazione della connessione punto a punto tra due socket.
+\underline{Socket}: (indirizzo IP + numero di porta dell’applicazione di livello superiore)
+
+un socket puo essere impegnato max in una connessione a volta
+
+TCP si occupa anche di connessioni tra socket molto distanti tra loro e si occupa di regolare flusso e congestione di pacchetti
+
+ad esempio fa in modo che non vengano spediti troppi pacchetti in un colpo solo o che ne sia spedito solo 1 in troppo tempo.
+
+invia pacchetti al massimo ritmo sostenibile dal router piu lento della rete(\underline{controllo congestione}) e dal destinatario finale(\underline{controllo del flusso})
+
+un metodo per fare tutto questo è il metodo \textbf{sliding windows} o a finestra scorrevole.
+
+una finestra scorrevole e un valore interno che indica il numero massimo che un mittente puo spedire di seguito.
+
+Ogni mittente TCP spedisce al massimo ritmo possibile un gruppo di SW(sliding window) pacchetti
+
+controllo di congestione parte da sw e aumentano man mano che arriva conferma positiva, per poi rallentare se non arriva
+
+il controllo di flusso non spedisce pacchetti sw dopo il primo che non manda conferma positiva
+
+
+\subsubsection{DNS}
+
+Gli utenti preferiscono usare nomi per le risorse in rete, anziché indirizzi IP
+
+Anche i nomi di dominio sono assegnati in modo univoco come i numeri di rete
+
+i nomi delle risorse non sono duplicabili
+
+Soluzione: Il servizio \textbf{Domain Name System} (DNS)
+
+permette di usare nomi veri e propri(come www.unibo.it) al posto di indirizzi IP
+
+È basato su una catena di server DNS organizzati gerarchicamente
+
+Ogni host in rete deve conoscere almeno un DNS server
+Ogni server DNS conosce almeno un DNS server superiore
+
+i server ricevono richieste e forniscono indirizzi IP
+
+Se un server non conosce la risposta inoltra la richiesta DNS a un server superiore fino possibilmente ad arrivare ai DNS root servers(pochi e costosi)
+
+
+\subsection{livello applicazione}
+
+spedisce e riceve dati delle applicazioni
+
+il livello applicazione si appoggia sul livello trasporto.
+
+ci sono tanti protocolli di livello applicazione, es: http smtp imap ecc....
+
+
+
+ci sono sue principali modalita di architettura in cui possono essere costruite applicazioni e servizi internet.
+
+\textbf{client/server} e \textbf{peer to peer}
+
+nelle architetture client/server
+I Client sono host che spediscono richieste di servizio
+I Server sono host sui quali sono in esecuzione i servizi che soddisfano le richieste
+
+in quelle peer to peer
+Tutti gli host sono contemporaneamente sia client che server
+Ogni host agisce da Server cercando di soddisfare le richieste ricevute, se possibile
+Ogni host agisce da Client quando spedisce ad altri host le richieste, o per se stesso, o
+per soddisfare richieste di terzi
+
+esistono anche servizi ibridi.
+
+su internet manca la garanzia di tempi di consegna brevi, non ce modo assoluto di garantirlo
+
+in internet2 e possibile spedire prima pacchetti urgenti, che su internet non sarebbe possibile.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
