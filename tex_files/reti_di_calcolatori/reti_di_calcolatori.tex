@@ -516,24 +516,30 @@ i peer sono connessi a intermittenza e cambiano indirizzo ip
 
 inoltre i peer fanno richieste ed eseguono servizi gli uni agli altri.
 
+---------------------------
+
+all'interno dello stesso host diversi processi  comunicano con comunicazioni inter-processo
+
+\underline{processo del client}: processo che inizializza la comunicazione
+
+\underline{processo del server}: processo che aspetta di essere contattato
 
 
+i \textbf{socket}: porta da cui partono e arrivano messaggi per gli altri processi
 
 
+per ricevere messaggi i processi devono avere degli identificatori.
+
+l'identificatore contiene sia l'indirizzo IP che il port number associato con il processo.
 
 
+app diverse possono richiedere cose leggermente diverse nel trasporto dati, ad esempio alcune tollerano qualche perdita di dati, altre no.
 
 
+ci sono due principali protocolli di trasporto dati \textbf{TCP} e \textbf{UDP}, vedi scorso capitolo.
 
 
-
-
-
-
-
-
-
-
+\textbf{SSL}: provvede crittatura TCP e integrita dei dati.
 
 
 
