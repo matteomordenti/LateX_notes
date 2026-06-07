@@ -542,13 +542,17 @@ ci sono due principali protocolli di trasporto dati \textbf{TCP} e \textbf{UDP},
 \textbf{SSL}: provvede crittatura TCP e integrita dei dati.
 
 
+\textbf{HTTP}: hypertext transfer protocol, usato sia dal client che dal server per mostrare o mandare oggetti.
 
+HTTP usa TCP.
 
+il client inizializza la connessione TCP con il server-> il server la accetta-> scambio di informazioni attraverso messaggi HTTP->chiusura connessione TCP
 
+HTTP è \underline{stateless} ovvero il server non mantiene informazioni a riguardo delle passate richieste del client.
 
+esistono connessioni HTTP \underline{persistenti} e \underline{non persistenti.}
 
-
-
+in una connessione persistente molteplici oggetti possono essere trasferiti con una sola connessione, in quelle non persistenti e un oggetto ogni connessione.
 
 
 
