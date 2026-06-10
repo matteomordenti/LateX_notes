@@ -555,12 +555,16 @@ esistono connessioni HTTP \underline{persistenti} e \underline{non persistenti.}
 in una connessione persistente molteplici oggetti possono essere trasferiti con una sola connessione, in quelle non persistenti e un oggetto ogni connessione.
 
 
+processo di una connessione non persistente: client inizializza la connessione TCP-> server accetta la connessione nel port-> client manda un message request HTTP nel socket di connessione TCP- il serevr lo riceve e manda un response message->il server ciude la connessione TCP->il client riceve la risposta contenente il file html, poi eventualmenet ripete i passi precedenti per ogni oggetto referenziato.
+
+definizioni: \textbf{RTT}: tempo che un piccolo pacchetto  ci mette a viaggiare dal client al server e tornare
+
+textbf{HTTP response time}: 2RTT+ tempo di trasmissione del file.
 
 
+le connessioni non persistenti richiedono 2 RTT mentre quella ppersistente ce ne mette 1 per tutti gli oggetti.
 
-
-
-
+abbiamo quindi sue tipi di messaggi HTTP: \textbf{request} e \textbf{response}
 
 
 
