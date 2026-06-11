@@ -566,68 +566,133 @@ le connessioni non persistenti richiedono 2 RTT mentre quella ppersistente ce ne
 
 abbiamo quindi sue tipi di messaggi HTTP: \textbf{request} e \textbf{response}
 
+per fare uploading esiste il metodo post e il metodo URL.
+
+nella prima linea della risposta server-client appare lo \underline{status code}
+
+\begin{itemize}
+\item 200: ok, oggetto richiesto piu avanti nel messaggio
+\item 301: oggetto spostato permanentemente,nuova locazione piu avanti nel messaggio
+\item 400: bad request, messaggio di richiesta non capito dal server
+\item 404: not found, oggetto richiesto non trovato nel server
+\item 505: versione di HTTP non supportata.
+\end{itemize}
 
 
+\textbf{cookies}
+
+4 componenti:
+\begin{itemize}
+\item linea header cookie del messaggio di risposta
+\item linea header cookie del prossimo messsaggio di risposta
+\item il file cookie tenuto nell'host dell'user, gestito dal browser dell'user
+\item il database di back-end del sito.
+\end{itemize}
 
 
+\underline{server proxy o web caches}
+
+servono a soddisfare le richieste del client senza disturbare il server di origine il browser manda richieste al proxy che manda da se o chiede al server di origine.
+
+in un certo senso il server proxy agisce sia da client che da server.
+
+in questo modo si riduce il tempo di attesa per il client ed evita traffico su link di istituzioni.
 
 
+\textbf{get condizionale}
+
+serve a non mandare l'oggetto se la cache ne ha una versione aggiornata,
+
+la cache specifica la data della copia nella http request e il server agisce di conseguenza.
+
+\subsection{e-mail}
+
+3 grandi componenti:
+\textbf{user-agent}
+
+\textbf{mail servers}
+
+\textbf{SMTP(simple mail transfer protocol)}
+
+l'user agent è il lettore di mail, cio che scrive, legge e manda le mail(es... outlook)
+
+i mail servers sono le mail box contenenti i messaggi in arrivo e le code di messaggi in uscita
+
+gli SMTP sono tra diversi mail servers per mandare le mail, il client manda, il server riceve
 
 
+l'SMTP usa TCP per mandare i messsaggi in sicurezza
 
 
+ci sono 3 fasi di trasferimento
+
+\begin{enumerate}
+\item handshake
+\item trasferimento del messaggio
+\item chiusura
+\end{enumerate}
+
+c'è un interazione di comando(in ascii)/risposta(status code e frase)
 
 
+SMTP usa connessioni persistenti e richiede il messaggio di essere im ascii a 7 bit.
+
+\underline{RFC 822}: standard sul format del testo del messaggio
+
+user agent-> server della mail del mittente-> server della mail del ricevente-> mail access protocol-> user agent
+
+il \underline{mail access protocol} serve a recuperare messaggi dalla mail del ricevente
+
+ci sono diversi protocolli: POP, IMAP(piu features), HTTP(gmail,hotmail ecc.....)
 
 
+POP3 ad esempio e diviso in fase di autorizzazione e fase di transazione in cui recupera il messaggio e poi cancella, quindi il messaggio non puo piu essere letto su altri client.
+POP3 inoltre e stateless
+
+IMAP invece tiene tutti i messaggi in un server, permette all'user di organizzarli in cartelle  e mantiene lo stato dell'user attraverso diverse sessioni.
 
 
+\textbf{DNS}: domain name system, traduce nomi degli indirizzi web in indirizzi IP comprensibili dal computer.
+
+è composto da una gerarchia di diversi \underline{name servers} che collaborano tra loro per risolvere i nomi
+
+root name server è l'origine della gerarchia, contattato da name server locale che non riesce a risolvere il nome.
+
+esistono i \underline{top level domains(TLD)},resposabili per com,it,net ecc...
+
+esistono authoritative DNS server, server DNS propri di istituzioni.
+
+i server DNS locali invece non appartengono necessariamente a una gerarchia
+
+i server DNS possono mettere in cache una mappatura, ma cio puo anche andare out-of-date
+
+le informazioni salvate si dicono: \underline{resource record}
 
 
+i messaggi dei protocolli DNS sono formulati allo stesso modo per richieste(query) e risposte(reply)
 
 
+in cima nell'header hai 16 bit di identificatore e 16 bit di flags
+
+poi 
+
+questions answer RRs
+authority RRs additional RRs
 
 
+se si vuole attaccare un DNS
+
+di solito si usano attacchi DDoS, cioe si bombarda il server di traffico, non molto pericoloso.
+
+e piu pericoloso attaccare i TLD
 
 
+si puo anche intercettare le queries con man-in-the-middle
+
+o usare DNS poisoning, cioe replies dannose ai server DNS
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\subsection{P2P}
 
 
 
