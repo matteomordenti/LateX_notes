@@ -694,30 +694,43 @@ o usare DNS poisoning, cioe replies dannose ai server DNS
 
 \subsection{P2P}
 
+i server non sono sempre on,i peers sono connessi a intermittenza e cambiano ip address
+
+con meccanismo client-server il server maanda copie dei file a intermittenza e ogni client li scarica
+
+con p2p il server deve mandare almeno 1 copia e ogni client la scarica, molteplici client scaricano e si scambiano grosse quantita di bits e formano un \underline{bit torrent}
+
+peer differenti possono avere raggrupamenti diversi di dati, poi se li scambiano a richiesta
+
+saltata parte video
+
+\subsection{socket programming}
+
+serve a costruire applicazioni client e server che comunicano usando socket
+
+UDP e TCP sono due tipi di socket, come gia detto TCP e piu affidabile
+
+UDP non ha handshake e non ce una vera e propria connessione ma piuttosto il mittente attacca indirizzo ip e porta di destinazione a ogni pacchetto
+
+i dati potrebbero andare persi o arrivare sparsi
 
 
+con TCP invece il server crea una socket di ascolto che accoglie i client che cervano una connessione, il client crea una socket per il server, 3 way handshake  epoi il server crea una socket specifica per quel client, su cui poi comunicheranno
 
 
+\subsection{NAT}
+
+NAT (Network Address Translation), una tecnica usata praticamente in tutti i router domestici per permettere a più dispositivi di condividere un unico indirizzo IP pubblico.
 
 
+ogni dispositivo ha il suo indirizzo della rete privata, ma internet non riuscirebbe a leggerlo, normalmente servirebbe un ip pubblico per ogni dispositivo.
+
+invece con NAT viene usato il solo ip publlico el router, permettendo cosi di cambiare indirizzi privati, ISP e ad avere maggiore sicurezza.
+
+perche il router distingua i dispositivi enntra in gioco TCP/UDP, \underline{una connessione e identificata da indirizzo ip+ porta}, quindi il router, la prima volta che riceve un messaggio per quel dispositivo traduce questa coppia in un numero e lo salva in una tabella, la tabella NAT
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+c'è qualche difetto, cioe il fatto che crea problemi con alcune applicazioni P2P, i router vanno a modificare cosi le porte, e che la connessione non è piu end-to-end, diminuendo la sicurezza, inoltre con IP6 si poterbbero avere sul serio indirizzi IP per tutto.
 
 
 
